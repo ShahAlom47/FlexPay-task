@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  box-sizing:  border-box;
+}
+
+.max-w{
+  max-width: 1240px;
+  margin: auto;
+}
+
+nav li{
+  font-weight: 600;
+  padding: 4px 8px;
+  margin: 2px;
+  border-radius: 3px; 
+}
+nav li:hover{ 
+background-color: rgba(0, 0, 0, 0.436);
+color: rgb(255, 255, 255);
+}
+nav li:active{ 
+transform: scale(0.94);
+}
+.active-btn{
+  transform: scale(0.94);
+  border-radius: 3px;
+  padding: 4px 8px;
+  
+}
+
+/* HeadRoom style */
+
+.headroom--unfixed,
+.headroom--unpinned,
+.headroom--pinned {
+  transition: transform 1s ease-in-out;
+}
+
+.headroom--unpinned {
+  transform: translateY(-100%);
+}
+
+
+
+.title-t {
+  position: relative;
+  display: flex;
+}
+
+.title-t::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: rgb(0, 0, 0); /* Adjust the color as needed */
+  transition: width 0.3s ease; /* Add smooth transition */
+}
+
+.title-t:hover::before {
+  width: 100%; /* Display full width on hover */
+}
+
+.active{
+  text-decoration: underline;
+}

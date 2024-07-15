@@ -1,0 +1,131 @@
+[
+    {
+      "title": "Luxury Villa in Beverly Hills",
+      "description": "A stunning luxury villa with modern amenities and beautiful views.",
+      "price_range": "$3,000,000 - $3,500,000",
+      "agent_name": "John Doe",
+      "agent_photo": "https://i.ibb.co/tJXhmQP/man.jpg",
+      "property_image": "https://i.ibb.co/6J8wxxS/steven-ungermann-a-RT5-UCf2-MYY-unsplash.jpg",
+      "property_location": "Beverly Hills, CA",
+      "verification_status": "Verified",
+      "property_type": "Villa",
+      "bedrooms": 5,
+      "bathrooms": 4,
+      "square_feet": 4500,
+      "year_built": 2015,
+      "amenities": [
+        "Swimming Pool",
+        "Home Theater",
+        "Gym",
+        "Garden"
+      ]
+    },
+    {
+      "title": "Modern Apartment in New York",
+      "description": "A beautiful apartment located in the heart of New York City with stunning city views.",
+      "price_range": "$800,000 - $950,000",
+      "agent_name": "Jane Smith",
+      "agent_photo": "https://i.ibb.co/tJXhmQP/man.jpg",
+      "property_image": "https://i.ibb.co/v3NPKP9/vojtech-bruzek-Yrxr3bs-Pd-S0-unsplash.jpg",
+      "property_location": "New York, NY",
+      "verification_status": "Verified",
+      "property_type": "Apartment",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "square_feet": 1200,
+      "year_built": 2020,
+      "amenities": [
+        "Rooftop Terrace",
+        "24/7 Security",
+        "Fitness Center",
+        "Concierge Service"
+      ]
+    },
+    {
+      "title": "Cozy Cottage in the Countryside",
+      "description": "A charming cottage in a quiet and peaceful countryside setting.",
+      "price_range": "$400,000 - $450,000",
+      "agent_name": "Robert Johnson",
+      "agent_photo": "https://i.ibb.co/tJXhmQP/man.jpg",
+      "property_image": "https://i.ibb.co/6J8wxxS/steven-ungermann-a-RT5-UCf2-MYY-unsplash.jpg",
+      "property_location": "Countryside, OR",
+      "verification_status": "Pending",
+      "property_type": "Cottage",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "square_feet": 1800,
+      "year_built": 1995,
+      "amenities": [
+        "Fireplace",
+        "Large Backyard",
+        "Patio",
+        "Detached Garage"
+      ]
+    },
+    {
+      "title": "Contemporary Condo in Miami",
+      "description": "A stylish and modern condo with access to the beach and great amenities.",
+      "price_range": "$600,000 - $750,000",
+      "agent_name": "Emily Davis",
+      "agent_photo": "https://i.ibb.co/tJXhmQP/man.jpg",
+      "property_image": "https://i.ibb.co/v3NPKP9/vojtech-bruzek-Yrxr3bs-Pd-S0-unsplash.jpg",
+      "property_location": "Miami, FL",
+      "verification_status": "Verified",
+      "property_type": "Condo",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "square_feet": 1500,
+      "year_built": 2018,
+      "amenities": [
+        "Beach Access",
+        "Swimming Pool",
+        "Gym",
+        "24/7 Security"
+      ]
+    },
+    {
+      "title": "Spacious Family Home in Austin",
+      "description": "A perfect family home with plenty of space and a large backyard.",
+      "price_range": "$500,000 - $550,000",
+      "agent_name": "Michael Brown",
+      "agent_photo": "https://i.ibb.co/tJXhmQP/man.jpg",
+      "property_image": "https://i.ibb.co/6J8wxxS/steven-ungermann-a-RT5-UCf2-MYY-unsplash.jpg",
+      "property_location": "Austin, TX",
+      "verification_status": "Verified",
+      "property_type": "Family Home",
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "square_feet": 3000,
+      "year_built": 2010,
+      "amenities": [
+        "Large Backyard",
+        "Open Floor Plan",
+        "Two-Car Garage",
+        "Community Park"
+      ]
+    },
+    {
+      "title": "Cozy Cottage in the Countryside",
+      "description": "A charming cottage in a quiet and peaceful countryside setting.",
+      "max_price": 3000,
+      "min_price": 6000,
+      "agent_name": "Robert Johnson",
+      "agent_photo": "https://i.ibb.co/tJXhmQP/man.jpg",
+      "property_image": "https://i.ibb.co/6J8wxxS/steven-ungermann-a-RT5-UCf2-MYY-unsplash.jpg",
+      "property_location": "Countryside, OR",
+      "verification_status": "Pending",
+      "property_type": "Cottage",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "square_feet": 1800,
+      "year_built": 1995,
+      "amenities": [
+        "Fireplace",
+        "Large Backyard",
+        "Patio",
+        "Detached Garage"
+      ]
+    }
+
+  ]
+  
