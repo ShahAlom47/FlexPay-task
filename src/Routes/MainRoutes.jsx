@@ -17,6 +17,7 @@ import AdminHome from "../DashBoard/AdminHome/AdminHome";
 import AgentHome from "../DashBoard/AgentHome/AgentHome";
 import AdminRoutes from "./AdminRoutes/AdminRoutes";
 import AgentRoutes from "./AgentRoutes/AgentRoutes";
+import ManageUser from "../DashBoard/AdminHome/ManageUser/ManageUser";
 
 
 
@@ -46,12 +47,16 @@ const router = createBrowserRouter([
         element: <PrivetRouter><UserHome></UserHome></PrivetRouter>,
       },
       {
-        path: "agentHome",
+        path: "/agentHome",
         element: <AgentRoutes><AgentHome></AgentHome></AgentRoutes>,
       },
       {
-        path: "adminHome",
+        path: "/adminHome",
         element:<AdminRoutes> <AdminHome></AdminHome></AdminRoutes>,
+      },
+      {
+        path: "/adminHome/manageUser",
+        element:<AdminRoutes> <ManageUser></ManageUser></AdminRoutes>,
       },
     
     ]

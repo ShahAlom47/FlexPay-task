@@ -1,41 +1,23 @@
-import {  FaHome } from "react-icons/fa";
+import {   FaUsersCog } from "react-icons/fa";
 import { NavLink,  } from "react-router-dom";
+import transaction from "../../assets/Logo/transaction.png"
 
-import {  MdManageAccounts, MdOutlinePermDataSetting } from "react-icons/md";
-
-
-import { RiAdvertisementLine, RiChatSettingsLine } from "react-icons/ri";
 
 const AdminHome = () => {
     return (
         <div>
-          <div className="flex gap-3 flex-wrap ">
-                            <NavLink to={'/dashBoard/adminHome'}>
-                                <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
-                                    <FaHome /> Admin Profile
+      <div className="flex gap-12 flex-wrap justify-center lg:justify-around md:justify-around mx-auto  min-h-screen">
+                             <div><NavLink to={'/adminHome/manageUser'}>
+                                <button className="flex flex-col justify-center items-center gap-2 hoverBtn hover:border-2 border-black p-2 rounded-md font-semibold">
+                                    <FaUsersCog  className="text-9xl" /> <h1>Manage User</h1>
                                 </button>
-                            </NavLink>
-                            <NavLink to={'/dashBoard/manageProperties'}>
-                                <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
-                                <MdOutlinePermDataSetting /> Manage Properties
+                            </NavLink></div>
+                            <div> <NavLink to={'/dashBoard/userWishList'}>
+                                <button className="flex flex-col justify-center items-center gap-2 hoverBtn hover:border-2 border-black p-2 rounded-md font-semibold">
+                                <img src={transaction} alt="" /> <h1>ALL Transaction</h1>
                                 </button>
-                            </NavLink>
-                            <NavLink to={'/dashBoard/manageUser'}>
-                                <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
-                                <MdManageAccounts /> Manage User
-                                </button>
-                            </NavLink>
+                            </NavLink></div>
                            
-                            <NavLink to={'/dashBoard/manageReview'}>
-                                <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
-                                <RiChatSettingsLine /> Manage Review
-                                </button>
-                            </NavLink>
-                            <NavLink to={'/dashBoard/advertise'}>
-                                <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
-                                <RiAdvertisementLine /> Advertise Property
-                                </button>
-                            </NavLink>
                         </div>
         </div>
     );

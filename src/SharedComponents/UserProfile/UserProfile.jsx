@@ -45,7 +45,7 @@ const UserProfile = () => {
                 <title>HONEST || Dashboard || Profile</title>
             </Helmet>
             <ToastContainer></ToastContainer>
-            <div className=" lg:flex  items-center justify-between  lg:p-5 md:p-3 p-2 w-full rounded-md">
+            <div className=" lg:flex  items-center justify-between  lg:p-1 md:p-1 p-1 w-full rounded-md">
                 <div className="lg:flex md:flex gap-8">
                 <div className="mb-5   ">
                  <Link to={'/'}>   <h1 className="text-5xl font-bold"><span className="text-red-500 l">S</span>Cash</h1></Link>
@@ -58,7 +58,7 @@ const UserProfile = () => {
                         data-tooltip-content="Edit Photo"
                         className=" absolute bottom-3 right-0 bg-slate-300 border border-black rounded-full p-1"><FaRegEdit /></button>
                     <Tooltip id="my-tooltip" />
-                    <div className=" w-16 h-16 ">
+                    <div className=" w-12 h-12 ">
                         <img className="w-full h-full rounded-full border-2 border-black" src={user?.photoURL} alt="" />
                     </div>
                 </div>

@@ -2,7 +2,7 @@
 
 import { IoMoon } from "react-icons/io5";
 import { MdDashboard, MdSunny } from "react-icons/md";
-import {  NavLink, useNavigate } from "react-router-dom";
+import {  Link, NavLink, useNavigate } from "react-router-dom";
 import useTheme from "../../CustomHocks/useTheme";
 import { LuLogOut } from "react-icons/lu";
 import { ToastContainer, toast } from "react-toastify";
@@ -67,7 +67,7 @@ console.log(user);
                     {
                         user?<UserProfile></UserProfile>: 
                         <div className="mb-5   ">
-                        <h1 className="text-5xl font-bold"><span className="text-red-500 l">S</span>Cash</h1>
+                        <Link to={'/'}><h1 className="text-5xl font-bold"><span className="text-red-500 l">S</span>Cash</h1></Link>
                        
                     </div>
                     }

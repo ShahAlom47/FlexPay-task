@@ -5,7 +5,6 @@ import { createContext, useEffect, useState } from "react";
 
 import PropTypes from 'prop-types'
 import useAxiosPublic from "../CustomHocks/useAxiosPublic";
-import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext()
 

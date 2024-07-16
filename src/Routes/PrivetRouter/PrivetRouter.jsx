@@ -24,6 +24,7 @@ const PrivetRouter = ({ children }) => {
 
     if ( !user) {
         toast.info('Login required, please login first');
+       
     }
 
     return (
