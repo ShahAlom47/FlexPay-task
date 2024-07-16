@@ -15,8 +15,7 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 
 
 const axiosSecure = axios.create({
-  // baseURL: 'http://localhost:3000',
-  baseURL: 'https://assignment-12-server-rho-eight.vercel.app',
+  baseURL: 'http://localhost:3000',
   withCredentials: true,
 });
 
@@ -32,7 +31,8 @@ const useAxios = () => {
       const token= localStorage.getItem('token')
       config.headers.authorization=`bearer ${token}`
       return config;
-    }, function (error) {
+    },
+     function (error) {
       // Do something with request error
       return Promise.reject(error);
     });
@@ -41,6 +41,7 @@ const useAxios = () => {
       return response;
     }, function (error) {
       const status= error.response?.status
+      console.log(error);
       if(status===401|| status===403){
         logout()
         .then(()=>{

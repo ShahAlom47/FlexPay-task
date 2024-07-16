@@ -66,11 +66,9 @@ const Login = () => {
                         } else if (res.user.role === 'agent') {
                             navigate("/agentHome");
                         } else if (res.user.role ==='admin') {
-                            navigate("adminHome");
+                            navigate("/adminHome");
                         }
-                        else{
-                            navigate('/login')
-                        }
+                        
                     }, 1500);
                 }
                 else {

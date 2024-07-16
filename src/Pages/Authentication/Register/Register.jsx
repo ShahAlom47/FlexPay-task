@@ -39,9 +39,7 @@ const Register = () => {
                 const salt = bcrypt.genSaltSync(10);
                 const hashedPassword = bcrypt.hashSync(data.password, salt);
 
-                console.log(
-                    hashedPassword
-                );
+               
                 axiosPublic.post('/addUser', { ...data, password: hashedPassword, role: 'pending',balance:0 })
                     .then(async (res) => {
                         console.log(res);
