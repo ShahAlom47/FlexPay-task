@@ -11,7 +11,7 @@ import Login from "../Pages/Authentication/Login/Login";
 
 import PrivetRouter from "./PrivetRouter/PrivetRouter";
 
-import DashBoard from "../DashBoard/DashBoard";
+
 import UserHome from "../DashBoard/UserHome/UserHome";
 import AdminHome from "../DashBoard/AdminHome/AdminHome";
 import AgentHome from "../DashBoard/AgentHome/AgentHome";
@@ -42,53 +42,21 @@ const router = createBrowserRouter([
       },
      
       {
-        path: "/user-home",
+        path: "/userHome",
         element: <PrivetRouter><UserHome></UserHome></PrivetRouter>,
       },
-    
-    ]
-  },
-  {
-    path: "/dashBoard",
-    element: <PrivetRouter><DashBoard></DashBoard></PrivetRouter>,
-    errorElement: <ErrorPage />,
-    children: [
-      // user routes
-
       {
-        path: "/dashBoard/userHome",
-        element: <PrivetRouter><UserHome></UserHome></PrivetRouter>,
-      },
-     
-
-
-
-      // admin routes 
-
-      {
-        path: "/dashBoard/adminHome",
-        element:<AdminRoutes> <AdminHome></AdminHome></AdminRoutes>,
-      },
-    
-  
-
-
-      //   agent route
-
-      {
-        path: "/dashBoard/agentHome",
+        path: "agentHome",
         element: <AgentRoutes><AgentHome></AgentHome></AgentRoutes>,
       },
       {
-        path: "/dashBoard/addProperty",
-        element: <AgentRoutes></AgentRoutes>,
+        path: "adminHome",
+        element:<AdminRoutes> <AdminHome></AdminHome></AdminRoutes>,
       },
-     
-
-
+    
     ]
-
   },
+  
 
 ]);
 

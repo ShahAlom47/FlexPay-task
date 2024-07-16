@@ -21,7 +21,7 @@ const axiosSecure = axios.create({
 });
 
 const useAxios = () => {
-  const { logOutUser} = useContext(AuthContext)
+  const {  logout} = useContext(AuthContext)
  
   const navigate = useNavigate()
 
@@ -42,7 +42,7 @@ const useAxios = () => {
     }, function (error) {
       const status= error.response?.status
       if(status===401|| status===403){
-        logOutUser()
+        logout()
         .then(()=>{
           navigate('/login')
         })
@@ -51,7 +51,7 @@ const useAxios = () => {
       return Promise.reject(error);
     });
   
-  }, [navigate,logOutUser])
+  }, [navigate, logout])
   return axiosSecure
 };
 

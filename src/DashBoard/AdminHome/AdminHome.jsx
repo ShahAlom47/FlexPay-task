@@ -1,19 +1,42 @@
-import UserProfileLayout from "../../SharedComponents/UserProfileLayout/UserProfileLayout";
+import {  FaHome } from "react-icons/fa";
+import { NavLink,  } from "react-router-dom";
 
+import {  MdManageAccounts, MdOutlinePermDataSetting } from "react-icons/md";
+
+
+import { RiAdvertisementLine, RiChatSettingsLine } from "react-icons/ri";
 
 const AdminHome = () => {
     return (
         <div>
-          <UserProfileLayout></UserProfileLayout>
-          <div className=" flex flex-col items-center justify-center lg:p-10 md:p-6 p-3 lg:pl-3 ">
-               <div className=" w-full space-y-3">
-               <div className=" bg-slate-300 rounded-r-full w-full p-3 pr-5 font-semibold "> admin: <span className="font-medium">120</span> </div>
-               <div className=" bg-slate-300 rounded-r-full w-full p-3 pr-5 font-semibold "> Reviews: <span className="font-medium">120</span> </div>
-               <div className=" bg-slate-300 rounded-r-full w-full p-3 pr-5 font-semibold "> Reviews: <span className="font-medium">120</span> </div>
-               <div className=" bg-slate-300 rounded-r-full w-full p-3 pr-5 font-semibold "> Reviews: <span className="font-medium">120</span> </div>
-                
-                </div>
-            </div>
+          <div className="flex gap-3 flex-wrap ">
+                            <NavLink to={'/dashBoard/adminHome'}>
+                                <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
+                                    <FaHome /> Admin Profile
+                                </button>
+                            </NavLink>
+                            <NavLink to={'/dashBoard/manageProperties'}>
+                                <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
+                                <MdOutlinePermDataSetting /> Manage Properties
+                                </button>
+                            </NavLink>
+                            <NavLink to={'/dashBoard/manageUser'}>
+                                <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
+                                <MdManageAccounts /> Manage User
+                                </button>
+                            </NavLink>
+                           
+                            <NavLink to={'/dashBoard/manageReview'}>
+                                <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
+                                <RiChatSettingsLine /> Manage Review
+                                </button>
+                            </NavLink>
+                            <NavLink to={'/dashBoard/advertise'}>
+                                <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
+                                <RiAdvertisementLine /> Advertise Property
+                                </button>
+                            </NavLink>
+                        </div>
         </div>
     );
 };

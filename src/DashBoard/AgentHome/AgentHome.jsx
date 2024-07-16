@@ -1,5 +1,9 @@
+import { FaHome } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+import { MdBookmarkAdded, MdDomainAdd, MdOutlineSell } from "react-icons/md";
+
+import { CiSquareQuestion } from "react-icons/ci";
 import { Helmet } from "react-helmet";
-import UserProfileLayout from "../../SharedComponents/UserProfileLayout/UserProfileLayout";
 
 
 const AgentHome = () => {
@@ -9,17 +13,33 @@ const AgentHome = () => {
                 <title>HONEST || Dashboard || Agent Home </title>
             </Helmet>
           
-            <UserProfileLayout></UserProfileLayout>
-           
-            <div className=" flex flex-col items-center justify-center lg:p-10 md:p-6 p-3 lg:pl-3 ">
-               <div className=" w-full space-y-3">
-               <div className=" bg-slate-300 rounded-r-full w-full p-3 pr-5 font-semibold "> Reviews: <span className="font-medium">120</span> </div>
-               <div className=" bg-slate-300 rounded-r-full w-full p-3 pr-5 font-semibold "> Reviews: <span className="font-medium">120</span> </div>
-               <div className=" bg-slate-300 rounded-r-full w-full p-3 pr-5 font-semibold "> Reviews: <span className="font-medium">120</span> </div>
-               <div className=" bg-slate-300 rounded-r-full w-full p-3 pr-5 font-semibold "> Reviews: <span className="font-medium">120</span> </div>
-                
-                </div>
-            </div>
+            <div className="flex gap-3 flex-wrap ">
+                        <NavLink to={'/dashBoard/agentHome'}>
+                            <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
+                                <FaHome /> Agent Profile
+                            </button>
+                        </NavLink>
+                        <NavLink to={'/dashBoard/addProperty'}>
+                            <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
+                            <MdDomainAdd/> Add Property
+                            </button>
+                        </NavLink>
+                        <NavLink to={'/dashBoard/myAddedProperty'}>
+                            <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
+                            <MdBookmarkAdded /> My Added Property
+                            </button>
+                        </NavLink>
+                        <NavLink to={'/dashBoard/soldProperty'}>
+                            <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
+                            <MdOutlineSell /> My Sold Property
+                            </button>
+                        </NavLink>
+                        <NavLink to={'/dashBoard/requestedProperty'}>
+                            <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
+                            <CiSquareQuestion /> Requested Properties
+                            </button>
+                        </NavLink>
+                        </div>
             
         </div>
     );

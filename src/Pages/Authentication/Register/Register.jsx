@@ -42,7 +42,7 @@ const Register = () => {
                 console.log(
                     hashedPassword
                 );
-                axiosPublic.post('/addUser', { ...data, password: hashedPassword, role: 'pending',balance:40 })
+                axiosPublic.post('/addUser', { ...data, password: hashedPassword, role: 'pending',balance:0 })
                     .then(async (res) => {
                         console.log(res);
                         toast.success('User added successfully! Wait for admin confirmation.');
@@ -50,7 +50,7 @@ const Register = () => {
                         const token = localStorage.getItem('token')
                         if (token) {
                             reset();
-                            navigate('/login');
+                            navigate('/');
                         }
 
                     })

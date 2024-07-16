@@ -3,15 +3,14 @@ import AuthenticationGIF from "../../../SharedComponents/AuthenticationGIF/Authe
 
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import './Login.css'
 
-import { loadCaptchaEnginge, LoadCanvasTemplate,  validateCaptcha } from 'react-simple-captcha';
+import { loadCaptchaEnginge, LoadCanvasTemplate } from 'react-simple-captcha';
 import useUser from "../../../CustomHocks/useUser";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import useAxiosPublic from "../../../CustomHocks/useAxiosPublic";
 
 
 
@@ -24,9 +23,7 @@ const Login = () => {
     const [emailErr,setEmailErr]=useState('')
     const {signIn}=useUser();
     const navigate=useNavigate()
-    const location=useLocation()
     const {register, handleSubmit } = useForm()
-    const axiosPublic=useAxiosPublic()
 
 
 
@@ -65,11 +62,11 @@ const Login = () => {
                     toast.success('Login Success');
                     setTimeout(() => {
                         if (res.user.role === 'pending' || res.user.role === 'user') {
-                            navigate("/dashBoard/userHome");
+                            navigate("/userHome");
                         } else if (res.user.role === 'agent') {
-                            navigate("/dashBoard/agentHome");
+                            navigate("/agentHome");
                         } else if (res.user.role ==='admin') {
-                            navigate("/dashBoard/adminHome");
+                            navigate("adminHome");
                         }
                         else{
                             navigate('/login')
@@ -80,7 +77,7 @@ const Login = () => {
                     setErrMsg(res.response.data.message)
                 }
 
-                console.log(res.response.data                );
+                               
             } catch (error) {
                 console.error('Login error:', error);
                 setErrMsg('An error occurred. Please try again.');

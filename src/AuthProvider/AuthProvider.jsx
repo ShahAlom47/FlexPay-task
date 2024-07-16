@@ -5,6 +5,7 @@ import { createContext, useEffect, useState } from "react";
 
 import PropTypes from 'prop-types'
 import useAxiosPublic from "../CustomHocks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext()
 
@@ -39,6 +40,9 @@ useEffect(() => {
       try {
         const response = await axiosPublic.post('/is-login', { token });
         setUser(response.data.user);
+        setLoading(false);
+return
+
       } catch (error) {
         if (error.response && (error.response.status === 403 || error.response.status === 401)) {
           logout();
@@ -49,10 +53,10 @@ useEffect(() => {
     } else {
       setUser(null);
     }
-    setLoading(false);
+    setLoading(true);
   };
 
-  const interval = setInterval(checkToken, 60000); // Check every minute
+  const interval = setInterval(checkToken, 50000); // Check every minute
 
   checkToken(); // Initial check
 
