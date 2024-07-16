@@ -8,19 +8,27 @@ import { ResponsiveTable } from "responsive-table-react";
 import { MdOutlineCancel, MdVerified } from "react-icons/md";
 import { FcAcceptDatabase } from "react-icons/fc";
 import { TiEdit } from "react-icons/ti";
+import Swal from "sweetalert2";
 
 
 const ManageUser = () => {
     const axiosSecure = useAxios()
-    const { data, isLoading, error } = useQuery({
+    const { data, isLoading, refetch } = useQuery({
         queryKey: ['allUser'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/allUser`)
             return res.data
         }
     })
-    const handelRole =(role)=>{
-        console.log(role);
+    const handelRole =async(role,id)=>{
+        console.log(role,id);
+        const res = await axiosSecure.patch(`/user/admin/role/${id}`,{role})
+        console.log(res);
+        if(res.data.modifiedCount>0){
+            refetch()
+            Swal.fire('Completed')
+        }
+
     }
     
     const columns = [
@@ -37,6 +45,10 @@ const ManageUser = () => {
             "text": "Mobile"
         },
         {
+            "id": "balance",
+            "text": "Balance"
+        },
+        {
             "id": "role",
             "text": "Role"
         },
@@ -51,15 +63,16 @@ const ManageUser = () => {
         name: user.name,
         email: user.email,
         mobile: user.mobile,
-        role: <p>{user.role}<div className="dropdown dropdown-bottom">
-            <div tabIndex={0} role="button" className="btn m-1"><TiEdit /></div> 
+        balance: user.balance,
+        role: <div>{user?.role}<div className="dropdown dropdown-bottom">
+            <div tabIndex={0} role="button" className="btn m-1 text-xl p-1 bg-transparent"><TiEdit /></div> 
             <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                <li><a onClick={()=>handelRole("user")}>User</a></li>
-                <li><a onClick={()=>handelRole("agent")} >Agent</a></li>
-                <li><a onClick={()=>handelRole("admin")}>Admin</a></li>
-                <li><a onClick={()=>handelRole("block")}>Block</a></li>
+                <li><a onClick={()=>handelRole("user",user._id)}>User</a></li>
+                <li><a onClick={()=>handelRole("agent",user._id)} >Agent</a></li>
+                <li><a onClick={()=>handelRole("admin",user._id)}>Admin</a></li>
+                <li><a onClick={()=>handelRole("block",user._id)}>Block</a></li>
             </ul>
-        </div></p>,
+        </div></div>,
 
         delete: <button className='text-2xl text-red-500 ' ><MdOutlineCancel className=' mx-auto' /></button>
     })) : [];
