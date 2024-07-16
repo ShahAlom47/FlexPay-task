@@ -42,7 +42,7 @@ const Register = () => {
                 console.log(
                     hashedPassword
                 );
-                axiosPublic.post('/addUser', { ...data, password: hashedPassword, role: 'pending' })
+                axiosPublic.post('/addUser', { ...data, password: hashedPassword, role: 'pending',balance:40 })
                     .then(async (res) => {
                         console.log(res);
                         toast.success('User added successfully! Wait for admin confirmation.');

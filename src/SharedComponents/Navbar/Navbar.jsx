@@ -17,7 +17,7 @@ import useAxios from "../../CustomHocks/useAxios";
 const Navbar = () => {
 
     const [themeData, handelTheme] = useTheme()
-    const { user, logOutUser } = useUser()
+    const { user,  logout } = useUser()
     const axiosSecure = useAxios()
     const [data, setData] = useState(null)
   
@@ -38,8 +38,8 @@ const Navbar = () => {
  
 
     const handelLogOut = () => {
-        logOutUser()
-            .then(() => {
+        logout()
+            if(!user){
                 toast.success('Logout Completed', {
                     position: "top-right",
                     autoClose: 2000,
@@ -52,7 +52,7 @@ const Navbar = () => {
                    
                     });
 
-            })
+            }
     }
 
 

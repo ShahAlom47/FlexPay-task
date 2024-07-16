@@ -42,17 +42,10 @@ const router = createBrowserRouter([
       },
      
       {
-        path: "/viewMyProperty/:email",
-        element: <PrivetRouter></PrivetRouter>,
+        path: "/user-home",
+        element: <PrivetRouter><UserHome></UserHome></PrivetRouter>,
       },
-      {
-        path: "/details/:id",
-        element: <PrivetRouter></PrivetRouter>,
-      },
-      {
-        path: "/allProperty",
-        element: <PrivetRouter></PrivetRouter>,
-      },
+    
     ]
   },
   {
@@ -76,10 +69,7 @@ const router = createBrowserRouter([
         path: "/dashBoard/adminHome",
         element:<AdminRoutes> <AdminHome></AdminHome></AdminRoutes>,
       },
-      {
-        path: "/dashBoard/manageProperties",
-        element: <AdminRoutes></AdminRoutes>,
-      },
+    
   
 
 

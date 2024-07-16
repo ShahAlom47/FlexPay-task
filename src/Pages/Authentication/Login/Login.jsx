@@ -11,6 +11,7 @@ import { loadCaptchaEnginge, LoadCanvasTemplate,  validateCaptcha } from 'react-
 import useUser from "../../../CustomHocks/useUser";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import useAxiosPublic from "../../../CustomHocks/useAxiosPublic";
 
 
 
@@ -21,10 +22,11 @@ const Login = () => {
     const [errMsg,setErrMsg]=useState('')
     const [passErr,setPassErr]=useState('')
     const [emailErr,setEmailErr]=useState('')
-    const {loginUser}=useUser();
+    const {signIn}=useUser();
     const navigate=useNavigate()
     const location=useLocation()
     const {register, handleSubmit } = useForm()
+    const axiosPublic=useAxiosPublic()
 
 
 
@@ -33,86 +35,58 @@ const Login = () => {
         setPassErr('')
         setEmailErr('')
 
-        if(data.password.length<6){
+        if(data.password.length<5){
 
-            setPassErr('Password must be 6 characters or longer')
+            setPassErr('Password must be 5 characters or longer')
             return
+        }
+        else if (isNaN(data.password)) {
+            setPassErr('Password must contain only numbers');
+            return;
         }
        
-        else if(!data.captcha){
-            setPassErr('')
-            setErrMsg('Type the Captcha')
-            return
-        }
-        else if(!validateCaptcha(data.captcha)){
-            setPassErr('')
-            setErrMsg('Captcha not matched')
-            return
-        }
+        // else if(!data.captcha){
+        //     setPassErr('')
+        //     setErrMsg('Type the Captcha')
+        //     return
+        // }
+        // else if(!validateCaptcha(data.captcha)){
+        //     setPassErr('')
+        //     setErrMsg('Captcha not matched')
+        //     return
+        // }
 
-        else{
-           
-
-            // ====================
-            loginUser(data.email,data.password)
-            .then(()=>{
-               
-                toast.success("Login success")
-                setTimeout(() => {
-                    navigate(location.state ? location.state : '/')
-                }, 1000);
-            })
-            .catch((error) => {
-                // const errorMessage = error.message;
-              
-                if(error.message=='Firebase: Error (auth/invalid-credential).'){
-                    setErrMsg("Email or password do not match. Please check again")
-                toast.error('Email or password do not match. Please check again')
+        else {
+            setPassErr('');
+            setErrMsg('');
+            try {
+                const res = await signIn(data.email, data.password);
+                if (res && res.message === 'Login successful') {
+                    toast.success('Login Success');
+                    setTimeout(() => {
+                        if (res.user.role === 'pending' || res.user.role === 'user') {
+                            navigate("/dashBoard/userHome");
+                        } else if (res.user.role === 'agent') {
+                            navigate("/dashBoard/agentHome");
+                        } else if (res.user.role ==='admin') {
+                            navigate("/dashBoard/adminHome");
+                        }
+                        else{
+                            navigate('/login')
+                        }
+                    }, 1500);
                 }
-                // setErrMsg(errorMessage)
-                // toast.error(errorMessage)
+                else {
+                    setErrMsg(res.response.data.message)
+                }
 
-            });
-
-            // ===================
-
-             // try {
-            //     const methods = await fetchSignInMethodsForEmail(auth,data.email);
-            //     console.log(methods,data.email);
-            //     // if (methods.length === 0) {
-            //     //     setEmailErr("Email doesn't match");
-            //     //     return;
-            //     // }
-    
-            //     loginUser(data.email, data.password)
-            //         .then((res) => {
-            //             console.log(res);
-            //             toast.success("Login success");
-            //             setTimeout(() => {
-            //                 navigate(location.state ? location.state : '/');
-            //             }, 1000);
-            //         })
-            //         .catch((error) => {
-            //             if (error.code === 'auth/wrong-password') {
-            //                 setPassErr('Incorrect password');
-            //             } else {
-            //                 setErrMsg('Login failed: ' + error.message);
-            //                 toast.error('Login failed: ' + error.message);
-            //             }
-            //         });
-            // } catch (error) {
-            //     setErrMsg('An error occurred: ' + error.message);
-            // }
+                console.log(res.response.data                );
+            } catch (error) {
+                console.error('Login error:', error);
+                setErrMsg('An error occurred. Please try again.');
+            }
         }
-       
-
-         
-    
-
-
-        
-       
-    }
+    };
 
     useEffect(() => {
         loadCaptchaEnginge(6); // Load the captcha with 6 characters

@@ -13,13 +13,6 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
   const axiosPublic = useAxiosPublic()
 
-
-
-
-
-
- 
-
   const setToken = async (user) => {
     try {
         const userInfo = user?.email; 
@@ -38,30 +31,25 @@ const AuthProvider = ({ children }) => {
     }
 };
 
-const logout = () => {
-  localStorage.removeItem('token');
-  setUser(null);
-  // navigate('/login');
-};
 
 useEffect(() => {
   const checkToken = async () => {
-      const token = localStorage.getItem('token');
-      if (token) {
-          try {
-              const response = await axiosPublic.post('/is-login', {
-                token:token
-              });
-              setUser(response.data.user);
-            
-          } catch (error) {
-              if (error.response.status === 403 || error.response.status === 401) {
-                  logout();
-              } else {
-                  console.error('Error checking login status:', error);
-              }
-          }
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const response = await axiosPublic.post('/is-login', { token });
+        setUser(response.data.user);
+      } catch (error) {
+        if (error.response && (error.response.status === 403 || error.response.status === 401)) {
+          logout();
+        } else {
+          console.error('Error checking login status:', error);
+        }
       }
+    } else {
+      setUser(null);
+    }
+    setLoading(false);
   };
 
   const interval = setInterval(checkToken, 60000); // Check every minute
@@ -69,17 +57,42 @@ useEffect(() => {
   checkToken(); // Initial check
 
   return () => clearInterval(interval);
-}, []);
+}, [axiosPublic]);
+
+const signIn = async (email, password) => {
+  try {
+      const res = await axiosPublic.post("/signIn", { email, password });
+
+      if (res?.data?.message === 'Login successful') {
+          setToken(res?.data?.user);
+          setUser(res?.data?.user);
+          return res.data;
+      } else {
+         
+          return res
+      }
+  } catch (error) {
+      console.error('Login error:', error);
+    return error
+  }
+};
+
+
+const logout = () => {
+  localStorage.removeItem('token');
+  setUser(null);
+};
+
 
 console.log(user);
-
-
 
 
   const userInfo = {
     user,
     loading,
-    setToken
+    setToken,
+    signIn,
+    logout
   }
   return (
     <AuthContext.Provider value={userInfo}>
