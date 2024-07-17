@@ -3,6 +3,7 @@ import SectionHeading from "../../../SharedComponents/SectionHeading/SectionHead
 import agentImg from "../../../assets/Logo/agentCashIn.jpeg"
 import cardImg from "../../../assets/Logo/cardCashin.jpeg"
 import AgentCashIn from "../../../Components/AgentCashIn";
+import CardCashIn from "../../../Components/CardCashIn";
 
 
 const CashIn = () => {
@@ -45,7 +46,7 @@ const CashIn = () => {
 
                     {/* Conditionally render components based on selected option */}
                     <div className="mt-6">
-                        {selectedOption === 'creditDebit' && "CreditDebitCardComponent"}
+                        {selectedOption === 'creditDebit' && <CardCashIn></CardCashIn>}
                         {selectedOption === 'agent' && <AgentCashIn></AgentCashIn>}
                     </div>
                 </div>

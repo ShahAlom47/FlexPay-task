@@ -1,10 +1,28 @@
-import SectionHeading from "../SharedComponents/SectionHeading/SectionHeading";
+import Swal from "sweetalert2";
+import useAxios from "../CustomHocks/useAxios";
+
 
 
 const AgentCashIn = () => {
-    const handelForm=(e)=>{
-        e.preventDefault()
+    const axiosSecure=useAxios()
 
+
+    const handelForm=async(e)=>{
+        e.preventDefault()
+        const form= e.target
+        const agentNumber= form.number.value;
+        const amount = form.amount.value;
+        const cashInData= {agentNumber,amount,category:'cash in',status:'pending'}
+        console.log(cashInData);
+
+        const res = await axiosSecure.post('/addCashInData',cashInData)
+        console.log(res.data);
+        if(res.data.insertedId){
+            form.reset()
+            Swal.fire('Request submitted, wait for agent confirmation')
+
+        }
+       
 
     }
     return (
