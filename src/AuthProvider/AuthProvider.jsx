@@ -52,8 +52,9 @@ return
       }
     } else {
       setUser(null);
+      setLoading(true);
     }
-    setLoading(true);
+    
   };
 
   const interval = setInterval(checkToken, 50000); // Check every minute

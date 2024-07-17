@@ -1,6 +1,6 @@
 
 
-import { IoMoon } from "react-icons/io5";
+import { IoMoon, IoNotificationsCircle } from "react-icons/io5";
 import { MdDashboard, MdSunny } from "react-icons/md";
 import {  Link, NavLink, useNavigate } from "react-router-dom";
 import useTheme from "../../CustomHocks/useTheme";
@@ -74,7 +74,7 @@ console.log(user);
                     </div>
                     <div className="navbar-end  flex-1 lg:flex">
                       
-
+                        <button className=" text-3xl"><IoNotificationsCircle /></button>
                         <button onClick={handelTheme} className=" text-xl hover:bg-[#00000049] mx-2 p-2 rounded-full" title="Theme">{themeData === 'light' ? <MdSunny /> : <IoMoon />}</button>
                         {
                             user ? <div className=" dropdown dropdown-hover  dropdown-end">

@@ -6,12 +6,10 @@ import { ResponsiveTable } from "responsive-table-react";
 import { MdOutlineCancel} from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
 import Swal from "sweetalert2";
-import { IoArrowBackCircleOutline } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
 
 
 const ManageUser = () => {
-    const navigate =useNavigate()
+    
     const axiosSecure = useAxios()
     const { data, isLoading, refetch } = useQuery({
         queryKey: ['allUser'],
@@ -108,8 +106,8 @@ const ManageUser = () => {
 
     return (
         <div className=" min-h-screen px-5">
-            <div className="flex gap-2 items-center my-5 border-b-4">
-          <button onClick={()=>navigate(-1)} className="text-2xl rounded-full  hover:bg-slate-400">  <IoArrowBackCircleOutline /></button>
+            <div className=" my-5 border-b-4">
+      
             <SectionHeading title={'Manage User'}></SectionHeading>
             </div>
             {

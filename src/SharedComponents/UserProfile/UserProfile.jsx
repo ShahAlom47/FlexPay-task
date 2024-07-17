@@ -4,10 +4,13 @@ import { Tooltip } from "react-tooltip";
 import useUser from "../../CustomHocks/useUser";
 import { FaRegEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { FiEyeOff } from "react-icons/fi";
 
 
 const UserProfile = () => {
     const { user } = useUser();
+    const [showBalance,setShowBalance]=useState(false)
 
  
     // const [handelHost] = usePhotoHost();
@@ -67,7 +70,7 @@ const UserProfile = () => {
                     
                     <h1 className=" text-xl font-semibold"> <span className="font-medium ">{user?.name}</span></h1>
                     
-                <h1 className="  font-semibold">Balance:<span className="font-medium ">{user?.balance}</span></h1>
+                <h1 onClick={()=>setShowBalance(!showBalance)} className=" flex gap-3  items-center cursor-pointer font-semibold">Balance:{showBalance?<span className="font-medium ">{user?.balance}</span>:<FiEyeOff />}</h1>
                 
 
                 </div>

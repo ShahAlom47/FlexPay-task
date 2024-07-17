@@ -18,6 +18,7 @@ import AgentHome from "../DashBoard/AgentHome/AgentHome";
 import AdminRoutes from "./AdminRoutes/AdminRoutes";
 import AgentRoutes from "./AgentRoutes/AgentRoutes";
 import ManageUser from "../DashBoard/AdminHome/ManageUser/ManageUser";
+import CashIn from "../DashBoard/UserHome/CashIn/CashIn";
 
 
 
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/userHome",
         element: <PrivetRouter><UserHome></UserHome></PrivetRouter>,
+      },
+      {
+        path: "/userHome/cashIn",
+        element: <PrivetRouter><CashIn></CashIn></PrivetRouter>,
       },
       {
         path: "/agentHome",

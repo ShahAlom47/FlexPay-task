@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 
 const Home = () => {
     return (
-        <div>
+        <div className="min-h-screen">
             <Helmet>
                 <title>Home | SCash</title>
             </Helmet>
