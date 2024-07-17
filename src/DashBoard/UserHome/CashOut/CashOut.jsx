@@ -33,8 +33,7 @@ const CashOut = () => {
             category:'Cash Out',
             userName:user.name,
             userEmail:user.email,
-            userMobile:user.mobile,
-            userBalance:user.balance,
+            userNumber:user.mobile,
             date:date,
         }
         setCashOutData(cashOutData)
@@ -47,12 +46,14 @@ const handelCashOut= async(e)=>{
     const form= e.target
     const password= form.password.value;
     const cashOutDatas={...cashOutData,password}
-    console.log(cashOutDatas);
-    const res = await axiosSecure.post(`/addCashOutData/${cashOutData.agentNumber}`,cashOutDatas)
+    // console.log(cashOutDatas);
+    const res = await axiosSecure.post(`/user/cashOut`,cashOutDatas)
         console.log(res.data);
         Swal.fire(res.data.message)
-        if(res.data?.result?.insertedId){
+        if(res.data?.status==='success'){
+            closeModal()
             form.reset()
+            
         }
 
 }
@@ -72,7 +73,7 @@ const handelCashOut= async(e)=>{
                         <form onSubmit={handelForm} className=" flex justify-center  gap-3 flex-wra">
                             <input name="number" type="number" placeholder="Agent Number" className="input input-bordered w-full max-w-xs" />
                             <input name="amount" type="number" min={50} placeholder="Amount" className="input input-bordered w-full max-w-xs" />
-                            <input type="submit" value="Submit" className="  btn btn-neutral" />
+                            <input type="submit" value="Cash Out" className="  btn btn-neutral" />
 
 
 
@@ -87,7 +88,7 @@ const handelCashOut= async(e)=>{
                     
                         <form onSubmit={handelCashOut} className=" flex gap-4 mt-0  flex-wrap">
                         <input type="number" name="password"  placeholder="Enter Your Pin" className="input input-bordered"/>
-                        <input className="btn btn-neutral" type="submit" value="Accept" />
+                        <input className="btn btn-neutral" type="submit" value="Confirm" />
                         </form>
                         <div className="modal-action mt-0">
                         <form method="dialog">
