@@ -9,7 +9,8 @@ import useUser from "../../../CustomHocks/useUser";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import useAxiosPublic from "../../../CustomHocks/useAxiosPublic";
-import bcrypt from 'bcryptjs'; // bcryptjs যোগ করুন
+import { CiMobile3 } from "react-icons/ci";
+import bcrypt from 'bcryptjs'; 
 
 const Register = () => {
     const [showPass, setShowPass] = useState(false);
@@ -43,13 +44,18 @@ const Register = () => {
                 axiosPublic.post('/addUser', { ...data, password: hashedPassword, role: 'pending',balance:0 })
                     .then(async (res) => {
                         console.log(res);
-                        toast.success('User added successfully! Wait for admin confirmation.');
-                        setToken(data)
-                        const token = localStorage.getItem('token')
-                        if (token) {
-                            reset();
-                            navigate('/');
+                        toast(res.data?.message);
+                        if(res.data?.insertedId){
+                            setToken(data)
+                            const token = localStorage.getItem('token')
+                            if (token) {
+                                
+                                reset();
+                                navigate('/');
+                            }
+
                         }
+                       
 
                     })
                     .catch((error) => {
@@ -92,7 +98,7 @@ const Register = () => {
                                 <input type="email" className="grow" placeholder="Email" {...register("email", { required: true })} />
                             </label>
                             <label className="input input-bordered flex items-center gap-2 w-full rounded-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" /><path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" /></svg>
+                               <CiMobile3 />
                                 <input type="number" className="grow" placeholder="Mobile" {...register("mobile", { required: true })} />
                             </label>
                             <label className="relative input input-bordered flex items-center gap-2 w-full rounded-sm">

@@ -53,7 +53,7 @@ console.log(user);
 
         {user && user?.role==='admin' ? (<NavLink to={'/adminHome'}><li className="border-b-2 flex flex-row items-center"> <span><MdDashboard /></span> My Service</li></NavLink>) : null}
 
-        {user && user?.role === 'pending' || user?.role !== 'user' && user?.role!=='admin' && user?.role !=='agent' ? (<NavLink to={'/userHome'}><li className="border-b-2 flex flex-row items-center"> <span><MdDashboard /></span> My Servicett</li></NavLink>) : null}
+        {user && user?.role === 'pending' ||user && user?.role === 'user' ? (<NavLink to={'/userHome'}><li className="border-b-2 flex flex-row items-center"> <span><MdDashboard /></span> My Service</li></NavLink>) : null}
 
 
     </>
@@ -83,7 +83,7 @@ console.log(user);
                              
                                 </div>
                                 <ul tabIndex={0} className="mt-0 pt-3 z-[1] p-2 shadow-lg shadow-[#8355b8] menu menu-sm dropdown-content bg-base-100 rounded-sm w-60">
-                                    <p className=" text-center underline font-bold bg-[#8d3ad1e3] text-white py-2 uppercase">{user?.displayName}</p>
+                                    <p className=" text-center underline font-bold bg-[#8d3ad1e3] text-white py-2 uppercase">{user?.role}</p>
                                     {
                                         dashNav
                                     }

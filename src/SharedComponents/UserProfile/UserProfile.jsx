@@ -71,10 +71,11 @@ const UserProfile = () => {
                 
 
                 </div>
-                <div className="lg:flex gap-6 items-center">
-                <h1 className=" text-md font-semibold uppercase  border-b-2">{user?.role}</h1>
+                <div className=" gap-6 items-center">
                 <h1 className="  font-semibold"><span className="font-medium ">{user?.email}</span></h1>
+                <h1 className="  font-semibold"><span className="font-medium ">{user?.mobile}</span></h1>
                 </div>
+               
                 </div>
             
             </div>
