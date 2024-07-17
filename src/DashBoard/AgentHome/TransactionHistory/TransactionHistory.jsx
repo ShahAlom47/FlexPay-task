@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import SectionHeading from "../../../SharedComponents/SectionHeading/SectionHeading";
-import { useState } from "react";
 import useAxios from "../../../CustomHocks/useAxios";
 import useUser from "../../../CustomHocks/useUser";
 import LoadingRing from "../../../SharedComponents/LoadingRing/LoadingRing";
@@ -11,7 +10,7 @@ const axiosSecure=useAxios();
 const {user}=useUser()
 
 
-    const { data, isLoading, refetch } = useQuery({
+    const { data, isLoading } = useQuery({
         queryKey: ['transactionHistory'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/agent/transactionHistory/${user.mobile}`)

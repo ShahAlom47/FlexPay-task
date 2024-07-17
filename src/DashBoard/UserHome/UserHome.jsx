@@ -34,7 +34,7 @@ const UserHome = () => {
                                 <MdOutlineSendToMobile className="text-9xl" /> <h1> Send Money</h1>
                                 </button>
                             </NavLink></div>
-                             <div><NavLink to={'/dashBoard/myReviews'}>
+                             <div><NavLink to={'/userHome/UserTransactionHistory'}>
                                 <button className="flex flex-col justify-center items-center gap-2 hoverBtn hover:border-2 border-black p-2 rounded-md  font-semibold">
                                 <FaHistory className="text-9xl" /><h1>History</h1>
                                 </button>

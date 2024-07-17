@@ -21,6 +21,7 @@ import ManageUser from "../DashBoard/AdminHome/ManageUser/ManageUser";
 import CashIn from "../DashBoard/UserHome/CashIn/CashIn";
 import CashInRequest from "../DashBoard/AgentHome/CashInRequest/CashInRequest";
 import TransactionHistory from "../DashBoard/AgentHome/TransactionHistory/TransactionHistory";
+import UserTransactionHistory from "../DashBoard/UserHome/UserTransactionHistory/UserTransactionHistory";
 
 
 
@@ -53,6 +54,12 @@ const router = createBrowserRouter([
         path: "/userHome/cashIn",
         element: <PrivetRouter><CashIn></CashIn></PrivetRouter>,
       },
+      {
+        path: "/userHome/UserTransactionHistory",
+        element: <PrivetRouter><UserTransactionHistory></UserTransactionHistory></PrivetRouter>,
+      },
+
+      // agent routes
       {
         path: "/agentHome",
         element: <AgentRoutes><AgentHome></AgentHome></AgentRoutes>,
