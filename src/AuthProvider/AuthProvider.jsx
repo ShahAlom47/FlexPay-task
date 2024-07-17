@@ -89,7 +89,7 @@ const logout = () => {
 };
 
 
-console.log(user);
+// console.log(user);
 
 
   const userInfo = {

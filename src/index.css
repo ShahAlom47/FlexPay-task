@@ -34,3 +34,8 @@ transform: scale(0.94);
 .active{
   text-decoration: underline;
 }
+
+.my-swal {
+  z-index: 2000 !important; 
+  
+}

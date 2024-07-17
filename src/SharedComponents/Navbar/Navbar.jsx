@@ -19,7 +19,7 @@ const Navbar = () => {
 const navigate=useNavigate()
     const [themeData, handelTheme] = useTheme()
     const { user,  logout } = useContext(AuthContext)
-console.log(user);
+// console.log(user);
 
  
 
