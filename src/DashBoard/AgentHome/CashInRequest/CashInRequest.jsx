@@ -14,6 +14,9 @@ const CashInRequest = () => {
     const { user } = useUser()
     const axiosSecure = useAxios()
     const [cashInData,setCashInData]=useState({})
+    const newDate= new Date()
+   const  date = newDate.toLocaleString()
+   console.log(date);
 
     const { data, isLoading, refetch } = useQuery({
         queryKey: ['cashInData'],
@@ -38,7 +41,6 @@ const handelAccept= async(e)=>{
 e.preventDefault();
 const form= e.target;
 const password= form.password.value;
-console.log(cashInData);
 const cashInDatas={
     agentNumber: cashInData.agentNumber,
     agentName: user.name,
@@ -49,18 +51,12 @@ const cashInDatas={
     amount: cashInData.amount, 
     category: cashInData.category,
     agentPassword:password,
-    cashInDataId:cashInData._id
+    cashInDataId:cashInData._id,
+    date:date,
 }
 const  res= await axiosSecure.patch('/agent/cashIn',cashInDatas)
-console.log(res);
-Swal.fire(
-    {
-     
-        text: res?.data?.message,
-        customClass: {
-            popup: 'my-swal' 
-        }
-    })
+
+Swal.fire(res?.data?.message)
 if(res.data.message==='Balance updated successfully'){
     refetch()
     form.reset()
@@ -115,7 +111,7 @@ if(res.data.message==='Balance updated successfully'){
     })) : [];
 
     return (
-        <div className="py-4">
+        <div className="py-4 min-h-screen">
             <div className="">
                 <SectionHeading title='Cash In Request'></SectionHeading>
             </div>
@@ -128,8 +124,8 @@ if(res.data.message==='Balance updated successfully'){
 
          
          
-            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-                <div className="modal-box flex justify-around">
+            <dialog id="my_modal_5" style={{ zIndex: 1  }} className="modal modal-bottom  sm:modal-middle">
+                <div  className="modal-box flex justify-around custom-modal">
                    
                     
                         <form onSubmit={handelAccept} className=" flex gap-4 mt-0  flex-wrap">

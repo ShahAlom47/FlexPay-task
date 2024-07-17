@@ -18,7 +18,7 @@ const AgentHome = () => {
                                 <BsCashCoin className="text-9xl" /> <h1>Cash In Request</h1>
                                 </button>
                             </NavLink></div>
-                            <div> <NavLink to={'/userHome'}>
+                            <div> <NavLink to={'/agentHome/TransactionHistory'}>
                                 <button className="flex flex-col justify-center items-center gap-2 hoverBtn hover:border-2 border-black p-2 rounded-md  font-semibold">
                                 <FaHistory className="text-9xl" /> <h1>Transection history</h1>
                                 </button>

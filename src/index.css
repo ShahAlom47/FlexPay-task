@@ -35,7 +35,3 @@ transform: scale(0.94);
   text-decoration: underline;
 }
 
-.my-swal {
-  z-index: 2000 !important; 
-  
-}

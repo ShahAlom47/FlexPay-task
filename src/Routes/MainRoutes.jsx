@@ -20,6 +20,7 @@ import AgentRoutes from "./AgentRoutes/AgentRoutes";
 import ManageUser from "../DashBoard/AdminHome/ManageUser/ManageUser";
 import CashIn from "../DashBoard/UserHome/CashIn/CashIn";
 import CashInRequest from "../DashBoard/AgentHome/CashInRequest/CashInRequest";
+import TransactionHistory from "../DashBoard/AgentHome/TransactionHistory/TransactionHistory";
 
 
 
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "/agentHome/CashInRequest",
         element: <AgentRoutes><CashInRequest></CashInRequest></AgentRoutes>,
+      },
+      {
+        path: "/agentHome/TransactionHistory",
+        element: <AgentRoutes><TransactionHistory></TransactionHistory></AgentRoutes>,
       },
       {
         path: "/adminHome",
