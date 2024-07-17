@@ -24,12 +24,12 @@ const UserHome = () => {
                                 <BsCashCoin className="text-9xl" /> <h1>Cash In</h1>
                                 </button>
                             </NavLink></div>
-                            <div> <NavLink to={'/dashBoard/myBoughtProperty'}>
+                            <div> <NavLink to={'/userHome/cashOut'}>
                                 <button className="flex flex-col justify-center items-center gap-2 hoverBtn hover:border-2 border-black p-2 rounded-md  font-semibold">
                                 <HiOutlineCash className="text-9xl" /> <h1>CashOut</h1>
                                 </button>
                             </NavLink></div>
-                            <div> <NavLink to={'/dashBoard/myReviews'}>
+                            <div> <NavLink to={'/userHome'}>
                                 <button className="flex flex-col justify-center items-center gap-2 hoverBtn hover:border-2 border-black p-2 rounded-md  font-semibold">
                                 <MdOutlineSendToMobile className="text-9xl" /> <h1> Send Money</h1>
                                 </button>
