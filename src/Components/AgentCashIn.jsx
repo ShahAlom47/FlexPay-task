@@ -1,10 +1,12 @@
 import Swal from "sweetalert2";
 import useAxios from "../CustomHocks/useAxios";
+import useUser from "../CustomHocks/useUser";
 
 
 
 const AgentCashIn = () => {
     const axiosSecure=useAxios()
+    const {user}=useUser()
 
 
     const handelForm=async(e)=>{
@@ -12,15 +14,23 @@ const AgentCashIn = () => {
         const form= e.target
         const agentNumber= form.number.value;
         const amount = form.amount.value;
-        const cashInData= {agentNumber,amount,category:'cash in',status:'pending'}
-        console.log(cashInData);
+        const cashInData= {
+            agentNumber,
+            amount,
+            category:'cash in',
+            status:'pending',
+            userName:user.name,
+            userEmail:user.email,
+            userMobile:user.mobile,
+            userBalance:user.balance,
+        }
+        
 
-        const res = await axiosSecure.post('/addCashInData',cashInData)
+        const res = await axiosSecure.post(`/addCashInData/${agentNumber}`,cashInData)
         console.log(res.data);
-        if(res.data.insertedId){
+        Swal.fire(res.data.message)
+        if(res.data?.result?.insertedId){
             form.reset()
-            Swal.fire('Request submitted, wait for agent confirmation')
-
         }
        
 

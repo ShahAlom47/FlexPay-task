@@ -1,9 +1,7 @@
-import { FaHome } from "react-icons/fa";
+import { FaHistory } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import { MdBookmarkAdded, MdDomainAdd, MdOutlineSell } from "react-icons/md";
-
-import { CiSquareQuestion } from "react-icons/ci";
 import { Helmet } from "react-helmet";
+import { BsCashCoin } from "react-icons/bs";
 
 
 const AgentHome = () => {
@@ -13,32 +11,20 @@ const AgentHome = () => {
                 <title>HONEST || Dashboard || Agent Home </title>
             </Helmet>
           
-            <div className="flex gap-3 flex-wrap ">
-                        <NavLink to={'/dashBoard/agentHome'}>
-                            <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
-                                <FaHome /> Agent Profile
-                            </button>
-                        </NavLink>
-                        <NavLink to={'/dashBoard/addProperty'}>
-                            <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
-                            <MdDomainAdd/> Add Property
-                            </button>
-                        </NavLink>
-                        <NavLink to={'/dashBoard/myAddedProperty'}>
-                            <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
-                            <MdBookmarkAdded /> My Added Property
-                            </button>
-                        </NavLink>
-                        <NavLink to={'/dashBoard/soldProperty'}>
-                            <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
-                            <MdOutlineSell /> My Sold Property
-                            </button>
-                        </NavLink>
-                        <NavLink to={'/dashBoard/requestedProperty'}>
-                            <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
-                            <CiSquareQuestion /> Requested Properties
-                            </button>
-                        </NavLink>
+            <div className="flex gap-12 flex-wrap justify-center lg:justify-between md:justify-between mx-auto  min-h-screen p-3">
+                            
+                            <div> <NavLink to={'/agentHome/CashInRequest'}>
+                                <button className="flex flex-col justify-center items-center gap-2 hoverBtn hover:border-2 border-black p-2 rounded-md  font-semibold">
+                                <BsCashCoin className="text-9xl" /> <h1>Cash In Request</h1>
+                                </button>
+                            </NavLink></div>
+                            <div> <NavLink to={'/userHome'}>
+                                <button className="flex flex-col justify-center items-center gap-2 hoverBtn hover:border-2 border-black p-2 rounded-md  font-semibold">
+                                <FaHistory className="text-9xl" /> <h1>Transection history</h1>
+                                </button>
+                            </NavLink></div>
+                         
+                          
                         </div>
             
         </div>

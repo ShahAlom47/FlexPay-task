@@ -33,7 +33,6 @@ const Login = () => {
         setEmailErr('')
 
         if(data.password.length<5){
-
             setPassErr('Password must be 5 characters or longer')
             return
         }
@@ -41,7 +40,6 @@ const Login = () => {
             setPassErr('Password must contain only numbers');
             return;
         }
-       
         // else if(!data.captcha){
         //     setPassErr('')
         //     setErrMsg('Type the Captcha')
@@ -52,7 +50,6 @@ const Login = () => {
         //     setErrMsg('Captcha not matched')
         //     return
         // }
-
         else {
             setPassErr('');
             setErrMsg('');
@@ -84,7 +81,7 @@ const Login = () => {
     };
 
     useEffect(() => {
-        loadCaptchaEnginge(6); // Load the captcha with 6 characters
+        loadCaptchaEnginge(6); 
     }, []);
    
 

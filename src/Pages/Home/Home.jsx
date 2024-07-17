@@ -7,7 +7,7 @@ const Home = () => {
             <Helmet>
                 <title>Home | SCash</title>
             </Helmet>
-            home
+          <img className="h-full" src="https://seamless.se/wp-content/uploads/2022/05/1.png" alt="home banner" />
         </div>
     );
 };
