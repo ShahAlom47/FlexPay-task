@@ -1,17 +1,21 @@
-import Swal from "sweetalert2";
+import { useRef, useState } from "react";
 import useAxios from "../../../CustomHocks/useAxios";
 import useUser from "../../../CustomHocks/useUser";
+import Swal from "sweetalert2";
 import SectionHeading from "../../../SharedComponents/SectionHeading/SectionHeading";
-import { useRef, useState } from "react";
 
 
-const CashOut = () => {
+const UserSendMoney = () => {
     const axiosSecure = useAxios()
     const { user } = useUser()
-    const [cashOutData, setCashOutData] = useState({})
+    const [sendMoneyData, setSendMoneyData] = useState({})
     const date = new Date().toLocaleString()
-    const mainFormRef = useRef(null); 
-    const confirmFormRef = useRef(null); 
+    const mainFormRef = useRef(null);
+    const confirmFormRef = useRef(null);
+    const [fee, setFee] = useState(false)
+    let sendMoneyFee = 5;
+    let formUserAmount = 0
+
 
 
     const openModal = () => {
@@ -27,18 +31,38 @@ const CashOut = () => {
     const handelForm = async (e) => {
         e.preventDefault()
         const form = e.target
-        const agentNumber = form.number.value;
-        const amount = form.amount.value;
+        const receiverNumber = form.number.value;
+        const userAmount = form.amount.value;
+        let amount = userAmount;
+        formUserAmount=userAmount
+        setFee(false)
+
+
+
+        if (userAmount > user?.balance) {
+            Swal.fire('Your Balance is Low ')
+            return
+        }
+        else if (userAmount < 50) {
+            Swal.fire(' you can send money minimum 50 tk  to max 100000 tk ')
+            return
+        }
+        else if (userAmount >= 100) {
+            amount = (parseFloat(userAmount) + parseFloat(sendMoneyFee)).toFixed(2);
+            setFee(true)
+        }
+
         const cashOutData = {
-            agentNumber,
+            receiverNumber,
             amount,
-            category: 'Cash Out',
+            category: 'Send Money',
             userName: user.name,
             userEmail: user.email,
             userNumber: user.mobile,
             date: date,
         }
-        setCashOutData(cashOutData)
+
+        setSendMoneyData(cashOutData)
         openModal();
 
     }
@@ -47,26 +71,25 @@ const CashOut = () => {
         e.preventDefault()
         const form = e.target
         const password = form.password.value;
-        const cashOutDatas = { ...cashOutData, password }
-        // console.log(cashOutDatas);
-        const res = await axiosSecure.post(`/user/cashOut`, cashOutDatas)
-        console.log(res.data);
-        Swal.fire(res.data.message)
-        if (res.data?.status === 'success') {
-            closeModal()
-            form.reset()
-            if (mainFormRef.current) mainFormRef.current.reset(); 
-            if (confirmFormRef.current) confirmFormRef.current.reset();
+        const sendMoneyDatas = { ...sendMoneyData, password }
+        console.log(sendMoneyDatas);
+        // const res = await axiosSecure.post(`/user/sendMoney`, sendMoneyDatas)
+        // console.log(res.data);
+        // Swal.fire(res.data.message)
+        // if (res.data?.status === 'success') {
+        //     closeModal()
+        //     form.reset()
+        //     if (mainFormRef.current) mainFormRef.current.reset();
+        //     if (confirmFormRef.current) confirmFormRef.current.reset();
 
-        }
+        // }
 
     }
-
     return (
         <div>
 
             <div>
-                <SectionHeading title="Cash Out"></SectionHeading>
+                <SectionHeading title="Send Money"></SectionHeading>
             </div>
             <div className="">
                 <div className=" lg:w-8/12 md:w-10/12 w-full p-4 mx-auto">
@@ -75,9 +98,9 @@ const CashOut = () => {
                     <div className="p-4 shadow-red-200 shadow-md rounded-md my-4">
 
                         <form ref={mainFormRef} onSubmit={handelForm} className=" flex justify-center  gap-3 flex-wra">
-                            <input name="number" type="number" placeholder="Agent Number" required className="input input-bordered w-full max-w-xs" />
+                            <input name="number" type="number" placeholder=" Number" required className="input input-bordered w-full max-w-xs" />
                             <input name="amount" type="number" min={50} placeholder="Amount" required className="input input-bordered w-full max-w-xs" />
-                            <input type="submit" value="Cash Out" className="  btn btn-neutral" />
+                            <input type="submit" value="Send" className="  btn btn-neutral" />
 
 
 
@@ -88,15 +111,15 @@ const CashOut = () => {
             </div>
 
             {/* modal////////////////////////////// */}
-            <dialog  id="my_modal_5" style={{ zIndex: 1 }} className="modal modal-bottom  sm:modal-middle">
+            <dialog id="my_modal_5" style={{ zIndex: 1 }} className="modal modal-bottom  sm:modal-middle">
                 <div className="modal-box custom-modal">
 
                     <div className=" m-2 p-3 border-2  rounded-md ">
-                        <p><span className="font-bold">Agent Number :</span> {cashOutData.agentNumber} </p>
-                        <p><span className="font-bold">Amount :</span> {cashOutData.amount} Tk</p>
-                        <p><span className="font-bold">CashOut Fee (1.5%) :</span> {(cashOutData.amount * 0.015).toFixed(2)} Tk</p>
+                        <p><span className="font-bold">Number :</span> {sendMoneyData.receiverNumber} </p>
+                        <p><span className="font-bold">Amount :</span> {sendMoneyData.amount>=100?sendMoneyData.amount-sendMoneyFee:sendMoneyData.amount} Tk</p>
+                        {fee ? <p><span className="font-bold">Send Money Fee :</span> {sendMoneyFee} Tk</p>:''}
                         <hr />
-                        <p><span className="font-bold text-lg">Total :</span> {(cashOutData.amount * 1.015).toFixed(2)} Tk</p>
+                        <p><span className="font-bold text-lg">Total :</span> {sendMoneyData.amount} Tk</p>
                     </div>
                     <div className=" flex justify-around">
                         <form ref={confirmFormRef} onSubmit={handelCashOut} className=" flex gap-4 mt-0  flex-wrap">
@@ -118,4 +141,4 @@ const CashOut = () => {
     );
 };
 
-export default CashOut;
+export default UserSendMoney;

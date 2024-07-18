@@ -42,8 +42,8 @@ const AgentCashIn = () => {
         <div className="p-4 shadow-red-200 shadow-md rounded-md my-4">
 
             <form onSubmit={handelForm} className=" flex justify-center  gap-3 flex-wra">
-            <input name="number" type="number" placeholder="Agent Number" className="input input-bordered w-full max-w-xs" />
-            <input name="amount" type="number" min={50} placeholder="Amount" className="input input-bordered w-full max-w-xs" />
+            <input name="number" required type="number" placeholder="Agent Number" className="input input-bordered w-full max-w-xs" />
+            <input name="amount" required type="number" min={50} placeholder="Amount" className="input input-bordered w-full max-w-xs" />
             <input type="submit" value="Submit"  className="  btn btn-neutral"/>
 
 
