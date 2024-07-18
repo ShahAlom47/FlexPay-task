@@ -70,7 +70,7 @@ const UserProfile = () => {
                     
                     <h1 className=" text-xl font-semibold"> <span className="font-medium ">{user?.name}</span></h1>
                     
-                <h1 onClick={()=>setShowBalance(!showBalance)} className=" flex gap-3  items-center cursor-pointer font-semibold">Balance:{showBalance?<span className="font-medium ">{user?.balance}</span>:<FiEyeOff />}</h1>
+                <h1 onClick={()=>setShowBalance(!showBalance)} className=" flex gap-3  items-center cursor-pointer font-semibold">Balance:{showBalance?<span className="font-medium ">{user?.balance} TK</span>:<FiEyeOff />}</h1>
                 
 
                 </div>

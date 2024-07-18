@@ -4,10 +4,12 @@ import { NavLink } from "react-router-dom";
 import { BsCashCoin } from "react-icons/bs";
 import { HiOutlineCash } from "react-icons/hi";
 import { MdOutlineSendToMobile } from "react-icons/md";
+import useUser from "../../CustomHocks/useUser";
+import PendingPage from "../../SharedComponents/PendingPage/PendingPage";
 
 
 const UserHome = () => {
-    // const {user}=useUser()
+    const {user}=useUser()
     return (
         <div className="">
             
@@ -16,8 +18,8 @@ const UserHome = () => {
             <Helmet>
                 <title> User Home || SCash  </title>
             </Helmet>
-           
-                        <div className="flex gap-12 flex-wrap justify-center lg:justify-between md:justify-between mx-auto  min-h-screen p-3">
+           {user.role==='user'?<PendingPage></PendingPage>
+                       : <div className="flex gap-12 flex-wrap justify-center lg:justify-between md:justify-between mx-auto  min-h-screen p-3">
                             
                             <div> <NavLink to={'/userHome/cashIn'}>
                                 <button className="flex flex-col justify-center items-center gap-2 hoverBtn hover:border-2 border-black p-2 rounded-md  font-semibold">
@@ -41,7 +43,7 @@ const UserHome = () => {
                             </NavLink></div>
                         </div>
                    
-
+           }
            
             </div>
             

@@ -56,12 +56,17 @@ return
     }
     
   };
-
+const timeOut = setTimeout(() => {
+  checkToken
+}, 2000);
   const interval = setInterval(checkToken, 50000); // Check every minute
 
   checkToken(); // Initial check
 
-  return () => clearInterval(interval);
+  return () => {
+    clearTimeout(timeOut); 
+    clearInterval(interval); 
+  };
 }, [axiosPublic]);
 
 const signIn = async (email, password) => {
