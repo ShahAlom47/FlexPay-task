@@ -16,7 +16,7 @@ const AdminHome = () => {
                             <FaUsersCog className="text-9xl" /> <h1>Manage User</h1>
                         </button>
                     </NavLink></div>
-                    <div> <NavLink to={'/dashBoard/userWishList'}>
+                    <div> <NavLink to={'/adminHome/allTransaction'}>
                         <button className="flex flex-col justify-center items-center gap-2 hoverBtn hover:border-2 border-black p-2 rounded-md font-semibold">
                             <img src={transaction} alt="" /> <h1>ALL Transaction</h1>
                         </button>

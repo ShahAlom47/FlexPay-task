@@ -24,6 +24,7 @@ import TransactionHistory from "../DashBoard/AgentHome/TransactionHistory/Transa
 import UserTransactionHistory from "../DashBoard/UserHome/UserTransactionHistory/UserTransactionHistory";
 import CashOut from "../DashBoard/UserHome/CashOut/CashOut";
 import UserSendMoney from "../DashBoard/UserHome/UserSendMoney/UserSendMoney";
+import AllTransaction from "../DashBoard/AdminHome/AllTransaction/AllTransaction";
 
 
 
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
       {
         path: "/adminHome/manageUser",
         element:<AdminRoutes> <ManageUser></ManageUser></AdminRoutes>,
+      },
+      {
+        path: "/adminHome/allTransaction",
+        element:<AdminRoutes> <AllTransaction></AllTransaction></AdminRoutes>,
       },
     
     ]
