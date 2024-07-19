@@ -29,7 +29,7 @@ const UserTransactionHistory = () => {
     
             {
                 "id": "mobile",
-                "text": " Agent Mobile"
+                "text": " Send/Receive Number"
             },
             {
                 "id": "amount",
@@ -53,12 +53,12 @@ const UserTransactionHistory = () => {
     
         ];
         const tableData = data ? data.map(user => ({
-            number: user.userNumber,
-            name: user.agentName,
-            mobile: user.agentNumber,
-            amount: user.amount,
-            time:user.date,
-            category:user.category,
+            number:  user?.userNumber,
+            name:user?.category==='Send Money'? user?.receiverName : user?.agentName,
+            mobile: user?.category==='Send Money'? user?.receiverNumber : user?.agentNumber,
+            amount: user?.amount,
+            time:user?.date,
+            category:user?.category,
     
         })) : [];
     

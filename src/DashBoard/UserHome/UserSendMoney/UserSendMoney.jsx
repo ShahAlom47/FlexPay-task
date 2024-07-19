@@ -14,7 +14,6 @@ const UserSendMoney = () => {
     const confirmFormRef = useRef(null);
     const [fee, setFee] = useState(false)
     let sendMoneyFee = 5;
-    let formUserAmount = 0
 
 
 
@@ -34,7 +33,6 @@ const UserSendMoney = () => {
         const receiverNumber = form.number.value;
         const userAmount = form.amount.value;
         let amount = userAmount;
-        formUserAmount=userAmount
         setFee(false)
 
 
@@ -73,16 +71,16 @@ const UserSendMoney = () => {
         const password = form.password.value;
         const sendMoneyDatas = { ...sendMoneyData, password }
         console.log(sendMoneyDatas);
-        // const res = await axiosSecure.post(`/user/sendMoney`, sendMoneyDatas)
-        // console.log(res.data);
-        // Swal.fire(res.data.message)
-        // if (res.data?.status === 'success') {
-        //     closeModal()
-        //     form.reset()
-        //     if (mainFormRef.current) mainFormRef.current.reset();
-        //     if (confirmFormRef.current) confirmFormRef.current.reset();
+        const res = await axiosSecure.post(`/user/sendMoney`, sendMoneyDatas)
+        console.log(res.data);
+        Swal.fire(res.data.message)
+        if (res.data?.status === 'success') {
+            closeModal()
+            form.reset()
+            if (mainFormRef.current) mainFormRef.current.reset();
+            if (confirmFormRef.current) confirmFormRef.current.reset();
 
-        // }
+        }
 
     }
     return (
