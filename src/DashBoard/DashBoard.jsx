@@ -33,15 +33,15 @@ const DashBoard = () => {
         <div>
             <UserProfile></UserProfile>
 
-            <div className=" grid  grid-cols-12 border-t-4 ">
+            <div className=" grid  lg:grid-cols-12 md:grid-cols-12 grid-cols-1 border-t-4 border-black  ">
                 {/* Navbar */}
-                <div className=" col-span-2 bg-purple-700 p-3">
+                <div className=" col-span-2 bg-purple-700 p-3 flex  lg:flex-col md:flex-col flex-row items-center gap-4 w-full ">
                     {user.accountType === "user" && <UserNav />}
                     {user.accountType === "agent" && <AgentNav />}
                 </div>
 
                 {/* ড্যাশবোর্ডের চাইল্ড রাউট লোড হবে */}
-                <div className=" col-span-10  bg-white border-l-4">
+                <div className=" col-span-10  bg-white border-l-4 border-black">
                     <Outlet />
                 </div>
             </div>

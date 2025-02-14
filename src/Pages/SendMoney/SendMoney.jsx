@@ -101,7 +101,7 @@ const SendMoney = () => {
         <>
           <SectionHeading title="Confirm Transaction" />
           <div className="space-y-4">
-            <div className="bg-gray-100 p-4 rounded-md">
+            <div className="bg-gray-100 p-4 text-black rounded-md">
               <p className="text-lg"><strong>Receiver:</strong> {receiver}</p>
               <p className="text-lg"><strong>Amount:</strong> {amount} Taka</p>
             </div>

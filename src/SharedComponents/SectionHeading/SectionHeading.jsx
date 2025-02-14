@@ -7,7 +7,7 @@ const SectionHeading = ({title}) => {
         <div className=" bg-gradient-to-l to-[#1d1e62cd] from-[#ffffff91] bg-opacity-60 absolute top-0 left-0 w-full h-full z-40 pointer-events-none"></div>
         <div className='flex  gap-2 items-center h-full  '>
          
-          <h1 className="text-4xl w-1/4 text-center z-50 uppercase  shadow-inner  px-2 pl-5 rounded-r-full  shadow-black   text-black font-bold">{title}</h1>
+          <h1 className="text-4xl w-1/4 text-center z-50 uppercase  shadow-inner  px-2 pl-5 rounded-r-full    text-black font-bold">{title}</h1>
         </div>
       </div>
       
