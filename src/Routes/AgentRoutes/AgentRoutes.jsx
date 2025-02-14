@@ -13,7 +13,7 @@ const AgentRoutes = ({children}) => {
         return <LoadingRing></LoadingRing>
     }
 
-    if (user&& user.role==='agent') {
+    if (user&& user.accountType==='agent') {
         return (
             <div>
                 {children}

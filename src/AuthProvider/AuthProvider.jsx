@@ -16,8 +16,8 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     // const [user, setUser] = useState(null);
-    const [user, setUser] = useState({ name: 'xyz', accountType:'user'});
-    // const [user, setUser] = useState({ name: 'xyz', accountType:'agent'});
+    // const [user, setUser] = useState({ name: 'xyz', accountType:'user'});
+    const [user, setUser] = useState({ name: 'xyz', accountType:'agent'});
 
 
     const userRegister = (email, password) => {

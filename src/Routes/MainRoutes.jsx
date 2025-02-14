@@ -8,6 +8,8 @@ import CashOut from "../Pages/CashOut/CashOut";
 import PrivetRouter from "./PrivetRouter/PrivetRouter";
 import DashBoard from "../DashBoard/DashBoard";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
+import AgentRoutes from "./AgentRoutes/AgentRoutes";
+import CashIn from "../Pages/CashIn/CashIn";
 
 
 
@@ -59,11 +61,12 @@ const router = createBrowserRouter([
       },
       // agent route 
       {
-        path: "/dash/agent",
+        path: "/dash/cashIn",
         element: (
-          <PrivetRouter role="agent">
-           <div> agent </div>
-          </PrivetRouter>
+          <AgentRoutes>
+            <CashIn></CashIn>
+          </AgentRoutes>
+          
         ),
       },
       // admin route 
