@@ -1,17 +1,13 @@
 import { useForm } from "react-hook-form";
-import AuthenticationGIF from "../../../SharedComponents/AuthenticationGIF/AuthenticationGIF";
 import { Helmet } from "react-helmet";
 import { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import useAxiosPublic from "../../../CustomHocks/useAxiosPublic";
-import { CiMobile3 } from "react-icons/ci";
 import bcrypt from 'bcryptjs';
+import bg from '../../../assets/features/common-bg.png'
 
 const Register = () => {
-    const [showPass, setShowPass] = useState(false);
     const [errMsg, setErrMsg] = useState('');
     const [passErr, setPassErr] = useState('');
     const navigate = useNavigate();
@@ -65,7 +61,7 @@ const Register = () => {
 
             // Call your API or function to create the user
             // Example: await axios.post('/register', userData);
-            
+
             toast.success("Registration successful!");
             reset(); // Reset form after successful registration
             navigate('/login'); // Redirect to login page
@@ -76,19 +72,21 @@ const Register = () => {
     };
 
     return (
-        <div className=" bg-[#070313] py-10 ">
+        <div
+            className="bg-[#0e0d0e] relative pt-8"
+            style={{ backgroundImage: `url(${bg})`, backgroundPosition: 'center top' }}
+        >
+            {/* Blur overlay */}
+            <div className="absolute inset-0 bg-gray-900 bg-opacity-60 blur-3xl"></div>
+
             <Helmet>
                 <title>Register | SCash</title>
             </Helmet>
             <ToastContainer />
-            <div className="max-w flex lg:flex-row md:flex-row flex-col items-center justify-center lg:p-6 md:p-5 my-6 ">
-                <div className="md:w-1/2 lg:w-1/2 p-5">
-                    <div className=" w-8/12 m-auto">
-                        <AuthenticationGIF />
-                    </div>
-                </div>
-                <div className="md:w-1/2 lg:w-1/2">
-                    <div className=" w-11/12 m-auto bg-slate-900 rounded-md p-5 shadow-md shadow-black">
+            <div className="max-w z-20 relative min-h-screen flex items-center justify-center lg:p-6 md:p-5 my-6">
+
+                <div className="md:w-1/2 lg:w-1/2 mx-auto">
+                    <div className=" w-11/12 m-auto bg-gray-500 bg-opacity-30 rounded-lg p-5 shadow-md shadow-black">
                         <h1 className="text-3xl font-bold text-center pb-3 border-b-4 rounded-full">Register</h1>
                         <form onSubmit={handleSubmit(onSubmit)} className="mt-4 flex gap-3 flex-col items-center">
                             <label className="input input-bordered flex items-center gap-2 w-full rounded-sm">
@@ -98,7 +96,7 @@ const Register = () => {
                                 <input type="email" className="grow" placeholder="Email" {...register("email", { required: true })} />
                             </label>
                             <label className="input input-bordered flex items-center gap-2 w-full rounded-sm">
-                              
+
                                 <input type="tel" className="grow" placeholder="Mobile" {...register("mobile", { required: true })} />
                             </label>
                             <label className="input input-bordered flex items-center gap-2 w-full rounded-sm">
@@ -107,10 +105,7 @@ const Register = () => {
                             <label className="input input-bordered flex items-center gap-2 w-full rounded-sm">
                                 <input type="text" className="grow" placeholder="NID" {...register("nid", { required: true })} />
                             </label>
-                            <label className="relative input input-bordered flex items-center gap-2 w-full rounded-sm">
-                                <input type={showPass ? 'text' : 'password'} className="grow" placeholder="Password" {...register("password", { required: true })} />
-                                <div onClick={() => setShowPass(!showPass)} className="absolute right-4 ">{showPass ? <FaEye /> : <FaEyeSlash />}</div>
-                            </label>
+
                             <label className="input input-bordered flex items-center gap-2 w-full rounded-sm">
                                 <select  {...register("accountType", { required: true })} className="grow bg-transparent">
                                     <option value="user">User</option>
@@ -121,7 +116,7 @@ const Register = () => {
                                 <p className="text-red-500">{passErr}</p>
                                 <p className="text-red-500">{errMsg}</p>
                             </div>
-                            <input className="btn w-full bg-[#271b8c] hover:bg-[#1d215a] rounded-sm text-white" type="submit" />
+                            <input className="btn w-full bg-[#271b8c] hover:bg-[#1d215a] rounded-sm text-white" type="Register" />
                         </form>
                         <div className="flex flex-col justify-center items-center">
                             <p className="font-semibold">Already have an account? <Link to={'/login'}><button className="btn-link btn">Login</button></Link></p>

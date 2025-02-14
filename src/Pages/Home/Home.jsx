@@ -5,11 +5,11 @@ import bg from "../../assets/features/banner-bg.png";
 const Home = () => {
     return (
         <div
-            className="m-auto bg-[#1f1f2d] min-h-screen bg-cover bg-no-repeat relative"
+            className="m-auto bg-[#1f1f2d] min-h-screen bg-cover bg-no-repeat relative pt-20"
             style={{ backgroundImage: `url(${bg})`, backgroundPosition: 'center top' }}
         >
             <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-            <Navbar />
+          
             <div className="relative z-10 max-w-7xl mx-auto py-20  grid lg:grid-cols-12 md:grid-cols-12 grid-cols-1 lg:gap-5 md:gap-3 gap-20
               ">
 
