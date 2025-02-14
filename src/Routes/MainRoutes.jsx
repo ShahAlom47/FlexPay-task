@@ -1,105 +1,83 @@
-
-
-import {
-  createBrowserRouter,
-} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Root from "../Root/Root";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
-import Home from "../Pages/Home/Home";
 import Register from "../Pages/Authentication/Register/Register";
 import Login from "../Pages/Authentication/Login/Login";
-
+import SendMoney from "../Pages/SendMoney/SendMoney";
+import CashOut from "../Pages/CashOut/CashOut";
 import PrivetRouter from "./PrivetRouter/PrivetRouter";
-
-
-import UserHome from "../DashBoard/UserHome/UserHome";
-import AdminHome from "../DashBoard/AdminHome/AdminHome";
-import AgentHome from "../DashBoard/AgentHome/AgentHome";
-import AdminRoutes from "./AdminRoutes/AdminRoutes";
-import AgentRoutes from "./AgentRoutes/AgentRoutes";
-import ManageUser from "../DashBoard/AdminHome/ManageUser/ManageUser";
-import CashIn from "../DashBoard/UserHome/CashIn/CashIn";
-import CashInRequest from "../DashBoard/AgentHome/CashInRequest/CashInRequest";
-import TransactionHistory from "../DashBoard/AgentHome/TransactionHistory/TransactionHistory";
-import UserTransactionHistory from "../DashBoard/UserHome/UserTransactionHistory/UserTransactionHistory";
-import CashOut from "../DashBoard/UserHome/CashOut/CashOut";
-import UserSendMoney from "../DashBoard/UserHome/UserSendMoney/UserSendMoney";
-import AllTransaction from "../DashBoard/AdminHome/AllTransaction/AllTransaction";
-
-
+import DashBoard from "../DashBoard/DashBoard";
+import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root></Root>,
+    element: <Root />,
     errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: <ProtectedRoute />, 
       },
       {
         path: "/register",
-        element: <Register></Register>,
+        element: <Register />,
       },
       {
         path: "/login",
-        element: <Login></Login>,
+        element: <Login />,
       },
-     
-      {
-        path: "/userHome",
-        element: <PrivetRouter><UserHome></UserHome></PrivetRouter>,
-      },
-      {
-        path: "/userHome/cashIn",
-        element: <PrivetRouter><CashIn></CashIn></PrivetRouter>,
-      },
-      {
-        path: "/userHome/cashOut",
-        element: <PrivetRouter><CashOut></CashOut></PrivetRouter>,
-      },
-      {
-        path: "/userHome/sendMoney",
-        element: <PrivetRouter><UserSendMoney></UserSendMoney></PrivetRouter>,
-      },
-      {
-        path: "/userHome/UserTransactionHistory",
-        element: <PrivetRouter><UserTransactionHistory></UserTransactionHistory></PrivetRouter>,
-      },
+    ],
+  },
 
-      // agent routes
+  {
+    path: "/dash",
+    element: (
+      <PrivetRouter>
+        <DashBoard />
+      </PrivetRouter>
+    ),
+    errorElement: <ErrorPage />,
+    children: [
       {
-        path: "/agentHome",
-        element: <AgentRoutes><AgentHome></AgentHome></AgentRoutes>,
+        path: "/dash/sendMoney",
+        element: (
+          <PrivetRouter role="user">
+            <SendMoney />
+          </PrivetRouter>
+        ),
       },
       {
-        path: "/agentHome/CashInRequest",
-        element: <AgentRoutes><CashInRequest></CashInRequest></AgentRoutes>,
+        path: "/dash/cashOut",
+        element: (
+          <PrivetRouter role="user">
+            <CashOut />
+          </PrivetRouter>
+        ),
       },
+      // agent route 
       {
-        path: "/agentHome/TransactionHistory",
-        element: <AgentRoutes><TransactionHistory></TransactionHistory></AgentRoutes>,
+        path: "/dash/agent",
+        element: (
+          <PrivetRouter role="agent">
+           <div> agent </div>
+          </PrivetRouter>
+        ),
       },
+      // admin route 
       {
-        path: "/adminHome",
-        element:<AdminRoutes> <AdminHome></AdminHome></AdminRoutes>,
-      },
-      {
-        path: "/adminHome/manageUser",
-        element:<AdminRoutes> <ManageUser></ManageUser></AdminRoutes>,
-      },
-      {
-        path: "/adminHome/allTransaction",
-        element:<AdminRoutes> <AllTransaction></AllTransaction></AdminRoutes>,
+        path: "/dash/admin",
+        element: (
+          <PrivetRouter role="admin">
+            <div> Admin </div>
+          </PrivetRouter>
+        ),
       },
     
-    ]
+    ],
   },
-  
-
 ]);
 
 export default router;

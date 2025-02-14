@@ -15,7 +15,8 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 
 
 const axiosSecure = axios.create({
-  baseURL: 'http://localhost:3000',
+  // baseURL: 'http://localhost:3000',
+  baseURL: 'https://s-cash-server.vercel.app',
   withCredentials: true,
 });
 
