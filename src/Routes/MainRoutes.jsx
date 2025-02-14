@@ -10,6 +10,7 @@ import DashBoard from "../DashBoard/DashBoard";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import AgentRoutes from "./AgentRoutes/AgentRoutes";
 import CashIn from "../Pages/CashIn/CashIn";
+import Home from "../Pages/Home/Home";
 
 
 
@@ -21,7 +22,8 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <ProtectedRoute />, 
+        // element: <ProtectedRoute />, 
+        element: <Home/>, 
       },
       {
         path: "/register",
