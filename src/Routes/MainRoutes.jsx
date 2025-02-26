@@ -11,6 +11,10 @@ import AgentRoutes from "./AgentRoutes/AgentRoutes";
 import CashIn from "../Pages/CashIn/CashIn";
 import Home from "../Pages/Home/Home";
 import UserHistory from "../Pages/UserHistory/UserHistory";
+import OverView from "../Pages/OverView/OverView";
+import ManageUser from "../Pages/ManageUser/ManageUser";
+import CashRequest from "../Pages/CashRequest/CashRequest";
+import WithdrawRequest from "../Pages/WithdrawRequest/WithdrawRequest";
 
 
 
@@ -81,10 +85,34 @@ const router = createBrowserRouter([
       },
       // admin route 
       {
-        path: "/dash/admin",
+        path: "/dash/overview",
         element: (
           <PrivetRouter role="admin">
-            <div> Admin </div>
+           <OverView></OverView>
+          </PrivetRouter>
+        ),
+      },
+      {
+        path: "/dash/manageUser",
+        element: (
+          <PrivetRouter role="admin">
+           <ManageUser></ManageUser>
+          </PrivetRouter>
+        ),
+      },
+      {
+        path: "/dash/cashRequest",
+        element: (
+          <PrivetRouter role="admin">
+           <CashRequest></CashRequest>
+          </PrivetRouter>
+        ),
+      },
+      {
+        path: "/dash/withdrawRequest",
+        element: (
+          <PrivetRouter role="admin">
+           <WithdrawRequest></WithdrawRequest>
           </PrivetRouter>
         ),
       },

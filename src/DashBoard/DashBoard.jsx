@@ -4,6 +4,7 @@ import useUser from "../CustomHocks/useUser";
 import UserNav from "../Components/UserNav";
 import AgentNav from "../Components/AgentNav";
 import UserProfile from "../SharedComponents/UserProfile/UserProfile";
+import AdminNav from "../Components/AdminNav";
 
 const DashBoard = () => {
     const { user, loading } = useUser();
@@ -38,7 +39,7 @@ const DashBoard = () => {
                 <div className=" col-span-2 bg-purple-700 p-3 flex  lg:flex-col md:flex-col flex-row items-center gap-4 w-full  ">
                     {user?.accountType  === "User" && <UserNav />}
                     {user?.accountType  === "Agent" && <AgentNav />}
-                    {user?.accountType  === "Admin" && <div>AdminNav </div>}
+                    {user?.accountType  === "Admin" && <AdminNav></AdminNav>}
                 </div>
 
                 {/* ড্যাশবোর্ডের চাইল্ড রাউট লোড হবে */}
