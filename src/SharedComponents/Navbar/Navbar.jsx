@@ -1,8 +1,15 @@
  import { Link } from 'react-router-dom';
  import { BiLogInCircle } from "react-icons/bi";
 import logo from '../../assets/features/fp-logo.png'
+import { FaUser } from 'react-icons/fa';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { useContext } from 'react';
 
 const Navbar = () => {
+
+const {user}= useContext(AuthContext)
+console.log(user);
+
   return (
     <div className="absolute top-0 z-50 w-full  ">
       <div className=" h-24 w-11/12 mx-auto flex justify-between items-center "> 
@@ -18,7 +25,24 @@ const Navbar = () => {
 
 
         <div className="">
+          {
+            user?
+            <>
+            {
+              user?.accountType === "User" &&  <Link to={'/dash/sendMoney'}><button className=' text-lg flex  gap-2 items-center group'><FaUser></FaUser></button></Link>
+            }
+            {
+              user?.accountType === "Agent" &&  <Link to={'/dash/cashIn'}><button className=' text-lg flex  gap-2 items-center group'><FaUser></FaUser></button></Link>
+            }
+            {
+              user?.accountType === "Admin" &&  <Link to={'/dash/overview'}><button className=' text-lg flex  gap-2 items-center group'><FaUser></FaUser></button></Link>
+            }
+            
+            </>
+           
+            :
           <Link to={'/login'}><button className=' text-lg flex  gap-2 items-center group'>Login <BiLogInCircle className='  group-hover:scale-125' /></button></Link>
+          }
 
         </div>
       </div>

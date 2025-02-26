@@ -7,10 +7,10 @@ import SendMoney from "../Pages/SendMoney/SendMoney";
 import CashOut from "../Pages/CashOut/CashOut";
 import PrivetRouter from "./PrivetRouter/PrivetRouter";
 import DashBoard from "../DashBoard/DashBoard";
-import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import AgentRoutes from "./AgentRoutes/AgentRoutes";
 import CashIn from "../Pages/CashIn/CashIn";
 import Home from "../Pages/Home/Home";
+import UserHistory from "../Pages/UserHistory/UserHistory";
 
 
 
@@ -58,6 +58,14 @@ const router = createBrowserRouter([
         element: (
           <PrivetRouter role="user">
             <CashOut />
+          </PrivetRouter>
+        ),
+      },
+      {
+        path: "/dash/history",
+        element: (
+          <PrivetRouter role="user">
+            <UserHistory></UserHistory>
           </PrivetRouter>
         ),
       },

@@ -36,8 +36,9 @@ const DashBoard = () => {
             <div className=" grid  lg:grid-cols-12 md:grid-cols-12 grid-cols-1 border-t-4 border-black  ">
                 {/* Navbar */}
                 <div className=" col-span-2 bg-purple-700 p-3 flex  lg:flex-col md:flex-col flex-row items-center gap-4 w-full  ">
-                    {user.accountType === "user" && <UserNav />}
-                    {user.accountType === "agent" && <AgentNav />}
+                    {user?.accountType  === "User" && <UserNav />}
+                    {user?.accountType  === "Agent" && <AgentNav />}
+                    {user?.accountType  === "Admin" && <div>AdminNav </div>}
                 </div>
 
                 {/* ড্যাশবোর্ডের চাইল্ড রাউট লোড হবে */}

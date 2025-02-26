@@ -2,12 +2,14 @@ import { useState } from "react";
 import SectionHeading from "../../SharedComponents/SectionHeading/SectionHeading";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useAxiosPublic from "../../CustomHocks/useAxiosPublic";
 
 const CashOut = () => {
   const [step, setStep] = useState(1); // 1 = Form, 2 = Confirmation Step
   const [agentNumber, setAgentNumber] = useState("");
   const [amount, setAmount] = useState("");
   const [pin, setPin] = useState("");
+  const AxiosPublic = useAxiosPublic()
 
   // Hardcoded agent list (later to be fetched from database)
   const agents = [
@@ -23,24 +25,28 @@ const CashOut = () => {
 
   // Handle Next Step
   const handleNext = () => {
-    if (!agentNumber || !amount) {
-      toast.error("Please enter agent number and amount.");
-      return;
-    }
-    if (amount < 50) {
-      toast.error("Minimum cash out amount is 50 Taka.");
-      return;
-    }
+
     setStep(2);
   };
 
   // Handle Cash Out Confirmation
-  const handleCashOut = () => {
+  const handleCashOut = async () => {
     if (pin.length !== 4) {
       toast.error("PIN must be 4 digits.");
       return;
     }
-    toast.success(`Cash out of ${amount} Taka to ${agentNumber} successful!`);
+
+    const data = {
+      receiverNumber: agentNumber,
+      amount: parseInt(amount),
+      pin: pin,
+    }
+    const res = await AxiosPublic.post('/api/transaction/cashOut', data)
+
+    console.log(res.data);
+
+
+
     setStep(1);
     setAgentNumber("");
     setAmount("");
@@ -97,14 +103,14 @@ const CashOut = () => {
           </p>
 
           <div>
-            <label className="block text-gray-700">Enter PIN</label>
+            <label className="block text-gray-700  font-bold">Enter PIN</label>
             <input
               type="password"
               value={pin}
               onChange={(e) => setPin(e.target.value)}
               placeholder="Enter 4-digit PIN"
               maxLength="4"
-              className="w-full p-3 border rounded-md mt-2"
+              className="w-full p-3 border bg-white rounded-md mt-2 "
             />
           </div>
 
