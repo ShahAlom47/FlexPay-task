@@ -7,16 +7,18 @@ import useUser from "../../CustomHocks/useUser";
 
 
 const PrivetRouter = ({ children }) => {
-    const { user} = useUser();
+    const { user, loading } = useUser();
     const location = useLocation()
 
+
+    if (loading) return <div>Loading</div>
 
     if (user) {
         return (
             <> {children} </>)
     }
 
-    if ( !user) {
+    if (!user) {
         toast.info('Login required, please login first');
     }
 
