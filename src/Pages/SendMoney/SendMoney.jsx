@@ -2,45 +2,38 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SectionHeading from "../../SharedComponents/SectionHeading/SectionHeading";
+import useAxiosPublic from "../../CustomHocks/useAxiosPublic";
 
 const SendMoney = () => {
   const [step, setStep] = useState(1); // Step management (1 = Input Form, 2 = Confirmation)
   const [amount, setAmount] = useState("");
   const [receiver, setReceiver] = useState("");
   const [pin, setPin] = useState("");
-  const [senderBalance, setSenderBalance] = useState(500);
+  const AxiosPublic = useAxiosPublic()
 
   // Handle Next Step
   const handleNext = () => {
-    if (!receiver || !amount) {
-      toast.error("Please enter receiver's number and amount.");
-      return;
-    }
-    if (amount < 50) {
-      toast.error("Minimum transaction amount is 50 Taka.");
-      return;
-    }
+   
     setStep(2);
   };
 
   // Handle Money Send
-  const handleSendMoney = () => {
+  const handleSendMoney = async () => {
     if (pin.length !== 5) {
-      toast.error("PIN must be 5 digits.");
+      // toast.error("PIN must be 5 digits.");
       return;
     }
+    const data = {
+      receiverNumber:receiver,
+      amount : parseInt(amount),
+      pin:pin,
 
-    const fee = amount > 100 ? 5 : 0;
-    const totalAmount = parseFloat(amount) + fee;
-
-    if (senderBalance < totalAmount) {
-      toast.error("Insufficient balance.");
-      return;
     }
+    const res = await AxiosPublic.post('/api/transaction/sendMoney',data)
 
-    setSenderBalance(senderBalance - totalAmount);
-    toast.success("Transaction Successful!");
-    
+    console.log(data,res);
+
+
     // Reset after transaction
     setTimeout(() => {
       setStep(1);
@@ -86,7 +79,7 @@ const SendMoney = () => {
               />
             </div>
 
-            <span className="text-sm text-gray-600">Sender Balance: {senderBalance} Taka</span>
+          
 
             <button
               onClick={handleNext}

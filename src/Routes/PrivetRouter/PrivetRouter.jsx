@@ -1,38 +1,37 @@
-import { Navigate, useLocation } from "react-router-dom";
-import PropTypes from 'prop-types'; // ES6
+import { Navigate, useLocation, } from "react-router-dom";
+import PropTypes from "prop-types"; // ES6
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import useUser from "../../CustomHocks/useUser";
 
+const PrivateRouter = ({ children, role}) => {
+    const { user, loading } = useUser();
+    const location = useLocation();
+console.log(user?.accountType, role);
 
 
-const PrivetRouter = ({ children }) => {
-    const { user} = useUser();
-    const location = useLocation()
+    if (loading) return <div>Loading...</div>;
 
-
-    if (user) {
-        return (
-            <> {children} </>)
+    if (!user) {
+        toast.info("Login required, please login first");
+        return <Navigate to="/login" state={{ from: location }} replace />;
     }
 
-    if ( !user) {
-        toast.info('Login required, please login first');
+    if (user?.accountType !== role) {
+        toast.info("Unauthorized access");
+        return <Navigate to="/" replace />;
     }
 
-    return (
-
-        <>
-
-            <ToastContainer></ToastContainer>
-            <Navigate state={location.pathname} to={'/login'}></Navigate>
-
-        </>
-    )
-
+    return <>
+   < ToastContainer/>
+    {children}
+    
+    </>;
 };
 
-export default PrivetRouter;
-PrivetRouter.propTypes = {
+export default PrivateRouter;
+
+PrivateRouter.propTypes = {
     children: PropTypes.node.isRequired,
-}
+    role: PropTypes.string,
+};

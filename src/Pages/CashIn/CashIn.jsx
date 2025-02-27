@@ -2,12 +2,14 @@ import { useState } from "react";
 import SectionHeading from "../../SharedComponents/SectionHeading/SectionHeading";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useAxiosPublic from "../../CustomHocks/useAxiosPublic";
 
 const CashIn = () => {
-  const [step, setStep] = useState(1); // Step 1: Form, Step 2: Confirmation
+  const [step, setStep] = useState(1); 
   const [customerNumber, setCustomerNumber] = useState("");
   const [amount, setAmount] = useState("");
   const [pin, setPin] = useState("");
+  const AxiosPublic = useAxiosPublic();
 
   // Handle Next Step
   const handleNext = () => {
@@ -23,16 +25,26 @@ const CashIn = () => {
   };
 
   // Handle Cash In Confirmation
-  const handleCashIn = () => {
-    if (pin.length !== 4) {
-      toast.error("PIN must be 4 digits.");
-      return;
+  const handleCashIn =  async() => {
+
+    const data = {
+      receiverNumber: customerNumber,
+      amount: parseInt(amount),
+      pin: pin,
     }
-    toast.success(`Cash-in of ${amount} Taka from ${customerNumber} successful!`);
-    setStep(1);
-    setCustomerNumber("");
-    setAmount("");
-    setPin("");
+    const res = await AxiosPublic.post('https://mobile-banking-tawny.vercel.app/api/transaction/cashIn', data)
+
+    console.log(res.data);
+    if(res.data?.success){
+
+      toast.success(res?.data.message);   setStep(1);
+      setCustomerNumber("");
+      setAmount("");
+      setPin("");
+
+    }
+  
+ 
   };
 
   return (
@@ -56,7 +68,7 @@ const CashIn = () => {
           <div>
             <label className="block text-gray-700">Amount (Taka)</label>
             <input
-              type="number"
+              type="text"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="Enter amount"
@@ -76,11 +88,11 @@ const CashIn = () => {
         <div className="space-y-4 my-5 text-black">
           <h3 className="text-lg font-semibold text-center">Confirm Cash In</h3>
           <p className="text-gray-600 text-center">
-            <strong>Agent:</strong> {customerNumber} <br />
+            <strong>Customer:</strong> {customerNumber} <br />
             <strong>Amount:</strong> {amount} Taka
           </p>
 
-          <div>
+          <div className=" text-white">
             <label className="block text-gray-700">Enter PIN</label>
             <input
               type="password"

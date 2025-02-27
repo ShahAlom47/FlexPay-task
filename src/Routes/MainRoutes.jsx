@@ -5,12 +5,18 @@ import Register from "../Pages/Authentication/Register/Register";
 import Login from "../Pages/Authentication/Login/Login";
 import SendMoney from "../Pages/SendMoney/SendMoney";
 import CashOut from "../Pages/CashOut/CashOut";
-import PrivetRouter from "./PrivetRouter/PrivetRouter";
 import DashBoard from "../DashBoard/DashBoard";
-import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
-import AgentRoutes from "./AgentRoutes/AgentRoutes";
 import CashIn from "../Pages/CashIn/CashIn";
 import Home from "../Pages/Home/Home";
+import UserHistory from "../Pages/UserHistory/UserHistory";
+import OverView from "../Pages/OverView/OverView";
+import ManageUser from "../Pages/ManageUser/ManageUser";
+import CashRequest from "../Pages/CashRequest/CashRequest";
+import WithdrawRequest from "../Pages/WithdrawRequest/WithdrawRequest";
+import PrivateRouter from "./PrivetRouter/PrivetRouter"
+import AgentCashRequest from "../Pages/AgentCashRequest/AgentCashRequest";
+import AgentWithdrawRequest from "../Pages/AgentWithdrawRequest/AgentWithdrawRequest";
+import AgentHistory from "../Pages/AgentHistory/AgentHistory";
 
 
 
@@ -39,45 +45,121 @@ const router = createBrowserRouter([
   {
     path: "/dash",
     element: (
-      <PrivetRouter>
+      // <PrivateRouter role={'User'} >
         <DashBoard />
-      </PrivetRouter>
+      // </PrivateRouter>
     ),
     errorElement: <ErrorPage />,
     children: [
       {
         path: "/dash/sendMoney",
         element: (
-          <PrivetRouter role="user">
+          <PrivateRouter role="User">
             <SendMoney />
-          </PrivetRouter>
+          </PrivateRouter>
         ),
       },
       {
         path: "/dash/cashOut",
         element: (
-          <PrivetRouter role="user">
+          <PrivateRouter role="User">
             <CashOut />
-          </PrivetRouter>
+          </PrivateRouter>
         ),
       },
+      {
+        path: "/dash/history",
+        element: (
+          <PrivateRouter role="User">
+            <UserHistory></UserHistory>
+          </PrivateRouter>
+        ),
+      },
+
+
+
       // agent route 
       {
-        path: "/dash/cashIn",
+        path: "/dash/agent/cashIn",
         element: (
-          <AgentRoutes>
+          <PrivateRouter role={"Agent"}>
             <CashIn></CashIn>
-          </AgentRoutes>
-          
+        
+            </PrivateRouter>
         ),
       },
+      {
+        path: "/dash/agent/cashRequest",
+        element: (
+          <PrivateRouter role={"Agent"}>
+            <AgentCashRequest></AgentCashRequest>
+        
+            </PrivateRouter>
+        ),
+      },
+      {
+        path: "/dash/agent/cashRequest",
+        element: (
+          <PrivateRouter role={"Agent"}>
+            <AgentCashRequest></AgentCashRequest>
+        
+            </PrivateRouter>
+        ),
+      },
+      {
+        path: "/dash/agent/withdrawRequest",
+        element: (
+          <PrivateRouter role={"Agent"}>
+            <AgentWithdrawRequest></AgentWithdrawRequest>
+        
+            </PrivateRouter>
+        ),
+      },
+      {
+        path: "/dash/agent/history",
+        element: (
+          <PrivateRouter role={"Agent"}>
+            <AgentHistory></AgentHistory>
+        
+            </PrivateRouter>
+        ),
+      },
+
+
+
+
+
       // admin route 
       {
-        path: "/dash/admin",
+        path: "/dash/overview",
         element: (
-          <PrivetRouter role="admin">
-            <div> Admin </div>
-          </PrivetRouter>
+          <PrivateRouter role="Admin">
+           <OverView></OverView>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/dash/manageUser",
+        element: (
+          <PrivateRouter role="Admin">
+           <ManageUser></ManageUser>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/dash/cashRequest",
+        element: (
+          <PrivateRouter role="Admin">
+           <CashRequest></CashRequest>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/dash/withdrawRequest",
+        element: (
+          <PrivateRouter role="Admin">
+           <WithdrawRequest></WithdrawRequest>
+          </PrivateRouter>
         ),
       },
     
