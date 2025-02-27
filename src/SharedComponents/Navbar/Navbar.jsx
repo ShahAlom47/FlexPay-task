@@ -32,7 +32,7 @@ console.log(user);
               user?.accountType === "User" &&  <Link to={'/dash/sendMoney'}><button className=' text-lg flex  gap-2 items-center group'><FaUser></FaUser></button></Link>
             }
             {
-              user?.accountType === "Agent" &&  <Link to={'/dash/cashIn'}><button className=' text-lg flex  gap-2 items-center group'><FaUser></FaUser></button></Link>
+              user?.accountType === "Agent" &&  <Link to={'/dash/agent/cashIn'}><button className=' text-lg flex  gap-2 items-center group'><FaUser></FaUser></button></Link>
             }
             {
               user?.accountType === "Admin" &&  <Link to={'/dash/overview'}><button className=' text-lg flex  gap-2 items-center group'><FaUser></FaUser></button></Link>

@@ -1,21 +1,15 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import useUser from "../../CustomHocks/useUser";
 import useAxiosPublic from "../../CustomHocks/useAxiosPublic";
 
 const AgentHistory = () => {
     const [historyData, setHistoryData] = useState([]);
-    const { user } = useUser();
-    const AxiosPublic = useAxiosPublic()
-
+    const AxiosPublic = useAxiosPublic();
 
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-            
-                const resTran = await AxiosPublic.get(`/api/transaction/${user?.id}`);
+                const resTran = await AxiosPublic.get(`/api/transaction/`);
                 console.log(resTran);
-          
                 setHistoryData(resTran?.data?.data);
             } catch (error) {
                 console.error("Error fetching transactions:", error);
@@ -27,12 +21,13 @@ const AgentHistory = () => {
 
     // Delete Transaction
     const handleDelete = async (id) => {
-        const confirmDelete = window.confirm("Are you sure you want to delete?");
+       const confirmDelete= window.alert("This functionality is currently under development.");
+        // const confirmDelete = window.confirm("Are you sure you want to delete?");
         if (!confirmDelete) return;
 
         try {
-            await axios.delete(`https://mobile-banking-tawny.vercel.app/api/transaction/agent/${id}`, { withCredentials: true });
-            setHistoryData(historyData.filter((transaction) => transaction._id !== id));
+            // await AxiosPublic.delete(`/api/transaction/agent/${id}`);
+            // setHistoryData(historyData.filter((transaction) => transaction._id !== id));
         } catch (error) {
             console.error("Error deleting transaction:", error);
         }
@@ -51,7 +46,10 @@ const AgentHistory = () => {
                                 <th className="p-3 border border-gray-600">#</th>
                                 <th className="p-3 border border-gray-600">Date</th>
                                 <th className="p-3 border border-gray-600">Amount</th>
-                                <th className="p-3 border border-gray-600">Status</th>
+                                <th className="p-3 border border-gray-600">Fee</th>
+                                <th className="p-3 border border-gray-600">Receiver</th>
+                                <th className="p-3 border border-gray-600">Sender</th>
+                                <th className="p-3 border border-gray-600">Transaction Type</th>
                                 <th className="p-3 border border-gray-600">Actions</th>
                             </tr>
                         </thead>
@@ -59,19 +57,19 @@ const AgentHistory = () => {
                             {historyData?.map((transaction, index) => (
                                 <tr key={transaction._id} className="text-center bg-gray-200">
                                     <td className="p-3 border border-gray-600">{index + 1}</td>
-                                    <td className="p-3 border border-gray-600">{new Date(transaction.date).toLocaleDateString()}</td>
+                                    <td className="p-3 border border-gray-600">{new Date(transaction.createdAt).toLocaleDateString()}</td>
                                     <td className="p-3 border border-gray-600">{transaction.amount} BDT</td>
-                                    <td className={`p-3 border border-gray-600 ${transaction.status === "Completed" ? "text-green-600" : "text-red-600"}`}>
-                                        {transaction.status}
-                                    </td>
+                                    <td className="p-3 border border-gray-600">{transaction.fee ? transaction.fee.toFixed(2) : "0.00"} BDT</td>
+                                    <td className="p-3 border border-gray-600">{transaction.receiver}</td>
+                                    <td className="p-3 border border-gray-600">{transaction.sender}</td>
+                                    <td className="p-3 border border-gray-600">{transaction.transactionType}</td>
                                     <td className="p-3 border border-gray-600">
                                         <button
-                                            className="bg-red-600 text-white px-3 py-1 rounded mr-2"
+                                            className="bg-red-600 text-white px-3 py-1 rounded"
                                             onClick={() => handleDelete(transaction._id)}
                                         >
                                             Delete
                                         </button>
-                                        <button className="bg-blue-600 text-white px-3 py-1 rounded">Edit</button>
                                     </td>
                                 </tr>
                             ))}
